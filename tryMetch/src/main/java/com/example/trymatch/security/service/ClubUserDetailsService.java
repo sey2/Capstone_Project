@@ -53,6 +53,8 @@ public class ClubUserDetailsService implements UserDetailsService {
                 clubMember.getEmail(),
                 clubMember.getPassword(),
                 clubMember.isFromSocial(),
+                clubMember.getMbti(),
+                clubMember.getProfile(),
                 clubMember.getRoleSet().stream().
                         map(role -> new SimpleGrantedAuthority("ROLE_"+role.name())).collect(Collectors.toSet())
         );

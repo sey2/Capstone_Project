@@ -42,6 +42,8 @@ public class ClubLoginSuccessHandler implements AuthenticationSuccessHandler {
         // 소셜 로그인으로 로그인 한경우 사용자의 패스워드가 1111인 경우라면 회원 정보를 수정해야겠다고 판단하고 수정 페이지로 리다이렉트
         if(fromSocial && passwordResult){
             redirectStrategy.sendRedirect(request, response, "/member/modify?from=social");
+        }else {
+            redirectStrategy.sendRedirect(request, response, "/sample/member");
         }
 
     }

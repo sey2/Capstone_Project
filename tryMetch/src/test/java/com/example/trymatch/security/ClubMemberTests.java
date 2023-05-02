@@ -32,6 +32,8 @@ public class ClubMemberTests {
                     .email("user" + i + "@zerock.org")
                     .name("사용자"+i)
                     .fromSocial(false)
+                    .mbti("ISTJ")
+                    .profile("profileCloud")
                     .password(passwordEncoder.encode("1111"))
                     .build();
 
