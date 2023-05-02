@@ -87,7 +87,7 @@ public class SecurityConfig {
         AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
         http.authenticationManager(authenticationManager);
 
-        http.formLogin(); // 인가 인증에 문제시 로그인 화면 띄우기 (유저 권한인데 관리자 페이지에 접속 시도하거나 그럴 때)
+        http.formLogin().successHandler(successHandler()); // 인가 인증에 문제시 로그인 화면 띄우기 (유저 권한인데 관리자 페이지에 접속 시도하거나 그럴 때)
         http.csrf().disable();  // CSRF 토큰 발행하지 않음 설정
         //  http.logout();  // 인가 인증에 문제시 로그아웃 화면 띄우기, CSRF 토큰을 사용할 때는 반드시 POST 방식으로만 로그아웃 처리해야함
         http.logout(); // csrf 토큰 비활성화시 GET 방식으로 로그아웃
