@@ -16,9 +16,9 @@ import java.util.Map;
 @Setter
 @ToString
 public class ClubAuthMemberDTO extends User implements OAuth2User {
-    public ClubAuthMemberDTO(String username, String password, boolean fromSocial,
+    public ClubAuthMemberDTO(String username, String password, boolean fromSocial,String mbti, String profile,
                              Collection<? extends GrantedAuthority> authorities, Map<String, Object> attr) {
-        this(username,password, fromSocial, authorities);
+        this(username,password, fromSocial, mbti, profile, authorities);
         this.attr = attr;
     }
 
@@ -28,12 +28,17 @@ public class ClubAuthMemberDTO extends User implements OAuth2User {
     private String name;
     private boolean fromSocial;
 
+    private String mbti;
+    private String profile;
+
     private Map<String, Object> attr;
 
     public ClubAuthMemberDTO(
             String username,
             String password,
             boolean fromSocial,
+            String mbti,
+            String profile,
             Collection<? extends GrantedAuthority> authorities
     ){
         super(username,password,authorities);

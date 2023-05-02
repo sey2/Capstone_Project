@@ -22,6 +22,8 @@ public class ClubMember extends BaseEntity{
     private String password;
     private String name;
     private boolean fromSocial;
+    private String mbti;
+    private String profile;
     @ElementCollection(fetch = FetchType.LAZY)
     @Builder.Default
     private Set<ClubMemberRole> roleSet = new HashSet<>();
