@@ -1,18 +1,29 @@
 package com.example.trymatch.controller;
 
+import com.example.trymatch.repository.ClubMemberRepository;
 import com.example.trymatch.security.dto.ClubAuthMemberDTO;
+import com.example.trymatch.security.entity.ClubMember;
+import com.example.trymatch.security.entity.ClubMemberRole;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 
+@RestController
+@RequiredArgsConstructor
 @Controller
 @Log4j2
 @RequestMapping("/sample/")
 public class LoginController {
+
+    private final ClubMemberRepository repository;
+    private final PasswordEncoder passwordEncoder;
 
     // 로그인을 하지 않은 사용자도 접글할 수 있는 경로
     @PreAuthorize("permitAll()")
@@ -57,6 +68,21 @@ public class LoginController {
         log.info(clubAuthMember);
 
         return "/sample/admin";
+    }
+
+    @PostMapping("/register")
+    public void register(@RequestBody Map<String, String> user){
+        ClubMember clubMember = ClubMember.builder()
+                .email(user.get("email"))
+                .password(passwordEncoder.encode(user.get("password")))
+                .mbti(user.get("mbti"))
+                .fromSocial(false)
+                .name(user.get("name"))
+                .profile("default").build();
+
+        clubMember.addMemberRole(ClubMemberRole.USER);
+
+        repository.save(clubMember);
     }
 
 
