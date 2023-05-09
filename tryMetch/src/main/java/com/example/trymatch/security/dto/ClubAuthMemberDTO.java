@@ -43,6 +43,7 @@ public class ClubAuthMemberDTO extends User implements OAuth2User {
     ){
         super(username,password,authorities);
         this.email = username;
+        this.mbti = mbti;
         this.password = password;
         this.fromSocial = fromSocial;
         this.attr = attr;
