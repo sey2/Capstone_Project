@@ -18,11 +18,17 @@ public class HelloWorldController {
 
     @GetMapping("/api/hello")
     public String test() {
-        return "Hello, world!";
+        return "S";
     }
 
     @GetMapping("/api/map")
     public ArrayList<TravelDTO> getTravelData() throws ParseException {
+        ArrayList<TravelDTO> list = travelService.callTravelData("areaBasedList", "","1");
+
+        for(TravelDTO dto : list)
+            System.out.println("city:" + dto.getCity() + "\nspot: " + dto.getSpot()
+            +"\n img: " + dto.getCity() + "\n mapX:" + dto.getMapX() + "\n mapY: " + dto.getMapY());
+
         return travelService.callTravelData("areaBasedList", "","1");
     }
 }

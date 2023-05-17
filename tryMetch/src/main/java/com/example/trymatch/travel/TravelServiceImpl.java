@@ -20,7 +20,7 @@ public class TravelServiceImpl implements TravelService{
     public ArrayList<TravelDTO> callTravelData(String search, String eventDate, String local) throws ParseException {
 
         HashMap<String, String> params = new HashMap<>();
-        params.put("ServiceKey", "key");
+        params.put("ServiceKey", "nzMrZtg6lBh%2FJHK%2FQ4bjXqIBHVo92ACZWaS7vQfxGW8KGUEqPRGwh2%2BviL8d4TcHqhsQQV1fZRuoUpNXMPmDQg%3D%3D");
         params.put("numOfRows", "10");
         params.put("pageNo", "1");
         params.put("MobileOS", "ETC");
