@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import MapTest from './components/map/MapTest'
 
 export default function App() {
@@ -23,8 +22,6 @@ export default function App() {
     return (
         <div>
             <MapTest/>
-
-            백엔드에서 가져온 데이터입니다 : {hello}
         </div>
     );
 }

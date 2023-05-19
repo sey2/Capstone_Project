@@ -1,5 +1,6 @@
 /* global kakao */
 import React, { useEffect, useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
 
 const { kakao } = window;
@@ -39,9 +40,13 @@ const MapTest = () => {
                         title: mapData[i].city,
                     });
 
-
-                    var iwContent = `<div style="padding:5px;"> 제목: ${mapData[i].city} <br>
-                                      위치: ${mapData[i].spot}</div> `
+                    var iwContent = `<div class="custom" style="width:200px; height:370px">
+                                            <img src= ${mapData[i].img} style="width:200px; height:300px" class="card-img-top" alt="...">
+                                            <div class="card-body">
+                                             <p class="card-text">제목: ${mapData[i].city}</p>
+                                              <p class="card-text">위치: ${mapData[i].spot}</p>
+                                             </div>
+                                            </div>`
 
                     var infowindow = new kakao.maps.InfoWindow({
                         content: iwContent,
