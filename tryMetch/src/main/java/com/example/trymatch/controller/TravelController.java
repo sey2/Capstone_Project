@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 @RestController
 @RequiredArgsConstructor
-public class HelloWorldController {
+public class TravelController {
 
     private final TravelService travelService;
 
