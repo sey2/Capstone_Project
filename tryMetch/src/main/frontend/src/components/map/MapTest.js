@@ -1,6 +1,7 @@
 /* global kakao */
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Map.css'
 import axios from "axios";
 
 const { kakao } = window;
@@ -8,6 +9,27 @@ const { kakao } = window;
 const MapTest = () => {
     const [map,setMap] = useState(null);
     const [data, setData] = useState([]);
+
+    var curLatLng
+
+    var options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    };
+
+    function success(position) {
+        console.log('위도 : ' + position.coords.latitude);
+        console.log('경도: ' + position.coords.longitude);
+
+        curLatLng = new kakao.maps.LatLng(position.coords.latitude,position.coords.longitude)
+    };
+
+    function error(err) {
+        console.warn('ERROR(' + err.code + '): ' + err.message);
+    };
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
 
     //처음 지도 그리기
     useEffect(()=>{
@@ -40,33 +62,31 @@ const MapTest = () => {
                         title: mapData[i].city,
                     });
 
-                    var iwContent = `<div class="custom" style="width:200px; height:370px">
-                                            <img src= ${mapData[i].img} style="width:200px; height:300px" class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                             <p class="card-text">제목: ${mapData[i].city}</p>
-                                              <p class="card-text">위치: ${mapData[i].spot}</p>
-                                             </div>
-                                            </div>`
 
-                    var infowindow = new kakao.maps.InfoWindow({
-                        content: iwContent,
-                        xAnchor: 0.3,
-                        yAnchor: 0.91,
+                    var content = `<div class="card" style="width:150px; height:170px">
+                                            <img src= ${mapData[i].img} style="width:150px; height:120px" class="card-img-top" alt="...">
+                                            <div class="container">
+                                              <p style="font-size:10px;>${mapData[i].city}</p>
+                                              <p style="font-size:10px;>${mapData[i].spot}</p>
+                                           </div>
+                                           </div>`
+
+                    // 마커 위에 커스텀오버레이를 표시합니다
+                    // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+                    var overlay = new kakao.maps.CustomOverlay({
+                        content: content,
+                        position: marker.getPosition()
                     });
 
-                    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-                    // 이벤트 리스너로는 클로저를 만들어 등록합니다
-                    // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-                    kakao.maps.event.addListener(
-                        marker,
-                        "mouseover",
-                        makeOverListener(kakaoMap, marker, infowindow)
-                    );
-                    kakao.maps.event.addListener(
-                        marker,
-                        "mouseout",
-                        makeOutListener(infowindow)
-                    );
+                    // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+                    kakao.maps.event.addListener(marker, 'click', function() {
+                        overlay.setMap(kakaoMap);
+                    });
+
+                    // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
+                    function closeOverlay() {
+                        setMap(null);
+                    }
 
                     setMap(marker)
                 }
@@ -84,6 +104,8 @@ const MapTest = () => {
                         infowindow.close();
                     };
                 }
+
+                kakaoMap.panTo(curLatLng)
 
             })
             .catch(error => console.log(error))

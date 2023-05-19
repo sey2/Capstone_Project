@@ -3,14 +3,7 @@ import axios from 'axios';
 import MapTest from './components/map/MapTest'
 
 export default function App() {
-    const [hello, setHello] = useState('')
     const [travelArr, setTravelArr] = useState([])
-
-    useEffect(() => {
-        axios.get('/api/hello')
-            .then(response => setHello(response.data))
-            .catch(error => console.log(error))
-    }, []);
 
     useEffect(() => {
         axios.get('/api/map')
