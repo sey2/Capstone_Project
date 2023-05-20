@@ -91,7 +91,7 @@ public class TravelServiceImpl implements TravelService{
     }
 
     private String parseTitle(String title){
-        return (title.length() >= 12 ) ? title.substring(0, 12) + ".." : title;
+        return (title.length() >= 14 ) ? title.substring(0, 12) + ".." : title;
     }
 
     private String convertLocalNum (String local) {

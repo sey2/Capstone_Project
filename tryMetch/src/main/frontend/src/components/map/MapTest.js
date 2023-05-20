@@ -80,23 +80,29 @@ const MapTest = () => {
                     let cityParagraph = document.createElement('p');
                     cityParagraph.className = 'card-text';
                     let cityText = document.createElement('b');
-                    cityText.textContent = mapData[i].city;
+                    cityText.textContent =  mapData[i].city;
                     cityParagraph.appendChild(cityText);
                     cardBody.appendChild(cityParagraph);
 
                     let spotParagraph = document.createElement('p');
-                    spotParagraph.className = 'card-text';
-                    let spotText = document.createElement('b');
-                    spotText.textContent = mapData[i].spot;
-                    spotParagraph.appendChild(spotText);
+                    spotParagraph.className = 'desc-text';
+                    spotParagraph.textContent = '주소: ' + mapData[i].spot;
                     cardBody.appendChild(spotParagraph);
 
+                    let bottomItem = document.createElement('div')
+                    bottomItem.className = 'bottom-item'
+
                     let telParagraph = document.createElement('p');
-                    telParagraph.className = 'card-text';
-                    let telText = document.createElement('b');
-                    telText.textContent = mapData[i].tel;
-                    telParagraph.appendChild(telText);
-                    cardBody.appendChild(telParagraph);
+                    telParagraph.className = 'desc-text-tel';
+
+                    if(mapData[i].tel === "")
+                        telParagraph.textContent = '번호: 없음 ';
+                    else
+                        telParagraph.textContent = '번호: ' +mapData[i].tel;
+
+                    // cardBody.appendChild(telParagraph);
+                    cardBody.appendChild(bottomItem)
+                    bottomItem.appendChild(telParagraph)
 
                     let closeButton = document.createElement('button');
                     closeButton.className = 'btn';
@@ -104,8 +110,8 @@ const MapTest = () => {
                     closeButton.onclick = function(){
                         overlay.setMap(null);
                     };
-                    cardBody.appendChild(closeButton);
-
+                    // cardBody.appendChild(closeButton);
+                    bottomItem.appendChild(closeButton)
 
 
 
