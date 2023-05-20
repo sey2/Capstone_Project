@@ -44,6 +44,7 @@ public class TravelServiceImpl implements TravelService{
         JSONObject jsonObject = (JSONObject) jsonParser.parse(jsonString);
 
         JSONObject response = (JSONObject) jsonObject.get("response");
+        System.out.println(response.toString());
         JSONObject body = (JSONObject) response.get("body");
         JSONObject items = (JSONObject) body.get("items");
         JSONArray itemArray = (JSONArray) items.get("item");
@@ -61,6 +62,7 @@ public class TravelServiceImpl implements TravelService{
                     .img((String) item.get("firstimage"))
                     .mapX(Double.parseDouble((String)item.get("mapx")))
                     .mapY(Double.parseDouble((String)item.get("mapy")))
+                    .tel((String) item.get("tel"))
                     .build();
 
             arItem.add(travel);

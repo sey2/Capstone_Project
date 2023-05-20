@@ -63,18 +63,56 @@ const MapTest = () => {
                     });
 
 
-                    var content = `<div class="card" style="width:150px; height:170px">
-                                            <img src= ${mapData[i].img} style="width:150px; height:120px" class="card-img-top" alt="...">
-                                            <div class="container">
-                                              <p style="font-size:10px;>${mapData[i].city}</p>
-                                              <p style="font-size:10px;>${mapData[i].spot}</p>
-                                           </div>
-                                           </div>`
+                    let cardContainer = document.createElement('div');
+                    cardContainer.className = 'card';
+                    cardContainer.style.width = '18rem';
+
+                    let cardImage = document.createElement('img');
+                    cardImage.className = 'card-img-top';
+                    cardImage.src = mapData[i].img;
+                    cardImage.alt = 'Card image cap';
+                    cardContainer.appendChild(cardImage);
+
+                    let cardBody = document.createElement('div');
+                    cardBody.className = 'card-body';
+                    cardContainer.appendChild(cardBody);
+
+                    let cityParagraph = document.createElement('p');
+                    cityParagraph.className = 'card-text';
+                    let cityText = document.createElement('b');
+                    cityText.textContent = mapData[i].city;
+                    cityParagraph.appendChild(cityText);
+                    cardBody.appendChild(cityParagraph);
+
+                    let spotParagraph = document.createElement('p');
+                    spotParagraph.className = 'card-text';
+                    let spotText = document.createElement('b');
+                    spotText.textContent = mapData[i].spot;
+                    spotParagraph.appendChild(spotText);
+                    cardBody.appendChild(spotParagraph);
+
+                    let telParagraph = document.createElement('p');
+                    telParagraph.className = 'card-text';
+                    let telText = document.createElement('b');
+                    telText.textContent = mapData[i].tel;
+                    telParagraph.appendChild(telText);
+                    cardBody.appendChild(telParagraph);
+
+                    let closeButton = document.createElement('button');
+                    closeButton.className = 'btn';
+                    closeButton.textContent = '닫기';
+                    closeButton.onclick = function(){
+                        overlay.setMap(null);
+                    };
+                    cardBody.appendChild(closeButton);
+
+
+
 
                     // 마커 위에 커스텀오버레이를 표시합니다
                     // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-                    var overlay = new kakao.maps.CustomOverlay({
-                        content: content,
+                    let overlay = new kakao.maps.CustomOverlay({
+                        content: cardContainer,
                         position: marker.getPosition()
                     });
 
@@ -83,26 +121,7 @@ const MapTest = () => {
                         overlay.setMap(kakaoMap);
                     });
 
-                    // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
-                    function closeOverlay() {
-                        setMap(null);
-                    }
-
                     setMap(marker)
-                }
-
-                // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
-                function makeOverListener(map, marker, infowindow) {
-                    return function () {
-                        infowindow.open(map, marker);
-                    };
-                }
-
-                // 인포윈도우를 닫는 클로저를 만드는 함수입니다
-                function makeOutListener(infowindow) {
-                    return function () {
-                        infowindow.close();
-                    };
                 }
 
                 kakaoMap.panTo(curLatLng)
@@ -124,6 +143,7 @@ const MapTest = () => {
             <div id="map" style={{ width: '99%', height: '1000px' }}></div>
         </div>
     );
+
 };
 
 export default MapTest;

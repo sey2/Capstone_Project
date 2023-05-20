@@ -13,5 +13,6 @@ public class TravelDTO {
     String img;
     Double mapX;
     Double mapY;
+    String tel;
 
 }
