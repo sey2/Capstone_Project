@@ -22,14 +22,16 @@ public class ClubAuthMemberDTO extends User implements OAuth2User {
         this.attr = attr;
     }
 
+    // 이메일
     private String email;
 
-    private String password;
-    private String name;
-    private boolean fromSocial;
 
-    private String mbti;
-    private String profile;
+    private String password; // 비밀번호
+    private String name; // 이름
+    private boolean fromSocial; // ?
+
+    private String mbti; // mbti
+    private String profile; // ?
 
     private Map<String, Object> attr;
 
