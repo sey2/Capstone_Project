@@ -74,7 +74,7 @@ const MapTest = () => {
 
 
                     let cardContainer = document.createElement('div');
-                    cardContainer.className = 'card';
+                    cardContainer.className = 'map-card';
                     cardContainer.style.width = '18rem';
 
                     let cardImage = document.createElement('img');
@@ -165,7 +165,7 @@ const MapTest = () => {
                     <div>
                         <form onSubmit={searchPlaces} return={false}>
                             검색 <input type="text" value="이태원 맛집" id="keyword" size="15"/>
-                            <button type="submit" className="search-btn"> 검색하기 </button>
+                            <button type="submit" className="search-btn-2"> 검색하기 </button>
                         </form>
                     </div>
                 </div>
