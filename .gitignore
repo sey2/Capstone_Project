@@ -68,4 +68,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+### local ###
+builde.gradle
+application.properties
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,java,react
