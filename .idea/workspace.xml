@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a788506-55a5-419f-9fe8-d54633d31964" name="Changes" comment="" />
+    <list default="true" id="9a788506-55a5-419f-9fe8-d54633d31964" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tryMetch/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/tryMetch/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tryMetch/src/main/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/tryMetch/src/main/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tryMetch/src/main/java/com/example/trymatch/security/dto/ClubAuthMemberDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/tryMetch/src/main/java/com/example/trymatch/security/dto/ClubAuthMemberDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tryMetch/src/main/java/com/example/trymatch/security/entity/ClubMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/tryMetch/src/main/java/com/example/trymatch/security/entity/ClubMember.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tryMetch/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/tryMetch/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tryMetch/src/main/resources/static/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/tryMetch/src/main/resources/static/asset-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tryMetch/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/tryMetch/src/main/resources/static/index.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,7 +123,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="createTest.testPost" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/tryMetch" />
@@ -123,7 +135,6 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.example.trymatch.board.createTest.testPost&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -136,7 +147,6 @@
     <configuration name="TryMatchApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="org.zerock.tryMetch.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.trymatch.TryMatchApplication" />
-      <option name="ENABLE_LAUNCH_OPTIMIZATION" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -154,14 +164,12 @@
     <list>
       <item itemvalue="Gradle.ClubMemberTests.insertDummies" />
       <item itemvalue="Gradle.Tests in 'tryMetch'" />
-      <item itemvalue="Gradle.createTest.testPost" />
       <item itemvalue="Spring Boot.TryMatchApplication" />
       <item itemvalue="Spring Boot.TryMatchApplication (1)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.createTest.testPost" />
-        <item itemvalue="Gradle.ClubMemberTests.insertDummies" />
+₩        <item itemvalue="Gradle.ClubMemberTests.insertDummies" />
         <item itemvalue="Gradle.Tests in 'tryMetch'" />
       </list>
     </recent_temporary>
@@ -177,20 +185,12 @@
       <workItem from="1684213625314" duration="4099000" />
       <workItem from="1684218730452" duration="3001000" />
       <workItem from="1684486893142" duration="5237000" />
+      <workItem from="1684645423782" duration="3281000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="org.hibernate.HibernateException" package="org.hibernate" />
-          <option name="timeStamp" value="2" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
