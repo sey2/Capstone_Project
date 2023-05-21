@@ -18,21 +18,16 @@ import ImageCard from './ImageCard';
 import MyPage from './page/MyPage';
 import axios from 'axios';
 import MapTest from './components/map/MapTest'
+import { useEffect } from 'react';
 
 
 function App() {
   // let [shoes] = useState(data);
   // console.log(shoes);
-  let [shoes] = useState(data);
+  // let [shoes] = useState(data);
 
   const [travelArr, setTravelArr] = useState([])
-
-  useEffect(() => {
-    axios.get('/api/map')
-        .then(response => setTravelArr(response.data))
-        .catch(error => console.log(error))
-  }, []);
-
+  
   const navigate = useNavigate()
 
   const goToMyPage = ()=> {
@@ -40,6 +35,10 @@ function App() {
   }
   const goToMore = ()=> {
     navigate("/more")
+  }
+
+  const goToMapTest =()=>{
+    navigate("/MapTest")
   }
 
 
@@ -79,6 +78,8 @@ function App() {
                 여행 후기
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">실시간 채팅</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3" onClick={goToMapTest}>주변 여행지 추천</NavDropdown.Item>
+              
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4" onClick={goToMyPage}>
                 마이페이지
@@ -182,6 +183,7 @@ function App() {
         {/* <Route path='/detail' element={<Detail/>}/> */}
         <Route path="/more" element={<More/>}/>
         <Route path='/MyPage' element={<MyPage/>}/>
+        <Route path='/MapTest' element={<MapTest/>}/>
       </Routes>
 
     {/* <Container>
