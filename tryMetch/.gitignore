@@ -38,4 +38,4 @@ out/
 
 ### local ###
 build.gradle
-application.properties
+**/application.properties
