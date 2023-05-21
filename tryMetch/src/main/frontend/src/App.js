@@ -16,11 +16,22 @@ import More from './page/More';
 import NavSearch from './NavSearch';
 import ImageCard from './ImageCard';
 import MyPage from './page/MyPage';
+import axios from 'axios';
+import MapTest from './components/map/MapTest'
+
 
 function App() {
   // let [shoes] = useState(data);
   // console.log(shoes);
   let [shoes] = useState(data);
+
+  const [travelArr, setTravelArr] = useState([])
+
+  useEffect(() => {
+    axios.get('/api/map')
+        .then(response => setTravelArr(response.data))
+        .catch(error => console.log(error))
+  }, []);
 
   const navigate = useNavigate()
 
