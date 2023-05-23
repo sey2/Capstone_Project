@@ -19,6 +19,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 /***
@@ -107,6 +109,17 @@ public class SecurityConfig {
 
         http.addFilterBefore(apiLoginFilter(authenticationManager), UsernamePasswordAuthenticationFilter.class);
 
+        // *** h2 관련 보안 처리 추후 삭제 예정 ***
+//        http.authorizeHttpRequests().requestMatchers(
+//                        new AntPathRequestMatcher("/**")).permitAll()
+//                .and()
+//                .csrf().ignoringRequestMatchers(
+//                        new AntPathRequestMatcher("/h2-console/**"))
+//                .and()
+//                .headers()
+//                .addHeaderWriter(new XFrameOptionsHeaderWriter(
+//                        XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN));
+        // *** h2 관련 보안 처리 추후 삭제 예정 ***
         return http.build();
     }
 
