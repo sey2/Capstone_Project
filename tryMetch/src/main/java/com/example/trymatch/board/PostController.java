@@ -1,5 +1,7 @@
 package com.example.trymatch.board;
 
+import com.example.trymatch.comment.Comment;
+import com.example.trymatch.comment.CommentService;
 import com.example.trymatch.repository.ClubMemberRepository;
 import com.example.trymatch.security.entity.ClubMember;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +15,12 @@ import java.util.List;
 @RequestMapping("/posts")
 public class PostController {
     private final PostService postService;
+    private final CommentService commentService;
 
     @Autowired
-    public PostController(PostService postService) {
+    public PostController(PostService postService, CommentService commentService) {
         this.postService = postService;
+        this.commentService = commentService;
     }
 
     // READ
@@ -67,4 +71,16 @@ public class PostController {
             return ResponseEntity.notFound().build();
         }
     }
+    @PostMapping("/{postId}/comments")
+    public ResponseEntity<Comment> createComment(
+            @PathVariable Long postId, @RequestBody Comment comment, @RequestParam("memberEmail") String memberEmail) {
+        // TODO: 댓글 작성 함수
+        Comment createdComment = this.commentService.createComment(postId,memberEmail,comment);
+        if(createdComment != null){ // 댓글 작성 성공
+            return ResponseEntity.ok(createdComment); // 만든 댓글을 리턴해줌
+        }else{ // 댓글 작성 실패
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
