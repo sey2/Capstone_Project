@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class PostService {
@@ -75,7 +76,6 @@ public class PostService {
 
     }
 
-
     /*
         게시글 삭제
         @param id
@@ -91,5 +91,33 @@ public class PostService {
         }
     }
 
+    /*
+        게시글 추천
+        @param Long Long
+        return
+     */
+    public boolean recommendPost(Long postId, String memberEmail) {
+        Optional<Post> postOptional = this.postRepository.findById(postId);
+        Optional<ClubMember> memberOptional = this.clubMemberRepository.findByEmail(memberEmail,false);
+
+        if (postOptional.isPresent() && memberOptional.isPresent()) {
+            Post post = postOptional.get();
+            ClubMember member = memberOptional.get();
+            Set<ClubMember> recommendedByMembers = post.getRecommendedByMembers();
+
+            if (recommendedByMembers.contains(member)) {
+                recommendedByMembers.remove(member);
+                post.setRecommendationCount(post.getRecommendationCount() - 1);
+                postRepository.save(post);
+                return false;
+            } else {
+                recommendedByMembers.add(member);
+                post.setRecommendationCount(post.getRecommendationCount() + 1);
+                postRepository.save(post);
+                return true;
+            }
+        }
+        return false;
+    }
 }
 

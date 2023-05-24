@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -26,4 +28,12 @@ public class Post{
 
     @ManyToOne
     private ClubMember clubMember;
+
+    @ManyToMany
+    @JoinTable(name = "post_recommendations",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "member_id"))
+    private Set<ClubMember> recommendedByMembers = new HashSet<>();
+
+    private int recommendationCount;
 }

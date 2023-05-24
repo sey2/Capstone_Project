@@ -122,4 +122,11 @@ public class PostController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    // 게시물 추천 기능
+    @PutMapping("/{postId}/recommend")
+    public ResponseEntity<Boolean> toggleRecommendation(@PathVariable Long postId, @RequestParam String memberEmail) {
+        boolean toggle = postService.recommendPost(postId, memberEmail);
+        return ResponseEntity.ok(toggle);
+    }
 }
