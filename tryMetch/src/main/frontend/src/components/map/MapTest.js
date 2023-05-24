@@ -28,8 +28,8 @@ const MapTest = () => {
     };
 
     function success(position) {
-        console.log('위도 : ' + position.coords.latitude);
-        console.log('경도: ' + position.coords.longitude);
+        console.log('현재위치 위도 : ' + position.coords.latitude);
+        console.log('현재위치 경도: ' + position.coords.longitude);
 
         curLatLng = new kakao.maps.LatLng(position.coords.latitude,position.coords.longitude)
     };
@@ -38,11 +38,10 @@ const MapTest = () => {
         console.warn('ERROR(' + err.code + '): ' + err.message);
     };
 
-    navigator.geolocation.getCurrentPosition(success, error, option);
-
     //처음 지도 그리기
     useEffect(()=>{
-       container = document.getElementById('map');
+        navigator.geolocation.getCurrentPosition(success, error, option);
+        container = document.getElementById('map');
        options = { center: new kakao.maps.LatLng(37.5924523515, 127.0406812854) };
        kakaoMap = new kakao.maps.Map(container, options);
        setMap(kakaoMap)
@@ -110,7 +109,6 @@ const MapTest = () => {
                     else
                         telParagraph.textContent = '번호: ' +mapData[i].tel;
 
-                    // cardBody.appendChild(telParagraph);
                     cardBody.appendChild(bottomItem)
                     bottomItem.appendChild(telParagraph)
 
@@ -120,7 +118,7 @@ const MapTest = () => {
                     closeButton.onclick = function(){
                         overlay.setMap(null);
                     };
-                    // cardBody.appendChild(closeButton);
+
                     bottomItem.appendChild(closeButton)
 
 
@@ -140,10 +138,10 @@ const MapTest = () => {
                     setMap(marker)
                 }
 
-                kakaoMap.panTo(curLatLng)
-
                 // 키워드로 장소를 검색합니다
                 searchPlaces();
+
+                // kakaoMap.panTo(curLatLng)
             })
             .catch(error => console.log(error))
 
@@ -164,7 +162,7 @@ const MapTest = () => {
                 <div className="option">
                     <div>
                         <form onSubmit={searchPlaces} return={false}>
-                            검색 <input type="text" value="이태원 맛집" id="keyword" size="15"/>
+                            검색 <input type="text" value="" id="keyword" size="15"/>
                             <button type="submit" className="search-btn-2"> 검색하기 </button>
                         </form>
                     </div>
@@ -179,11 +177,11 @@ const MapTest = () => {
     function searchPlaces() {
 
        // var keyword = document.getElementById('keyword').value;
-
-        // if (!keyword.replace(/^\s+|\s+$/g, '')) {
-        //     alert('키워드를 입력해주세요!');
-        //     return false;
-        // }
+       //
+       //  if (!keyword.replace(/^\s+|\s+$/g, '')) {
+       //      alert('키워드를 입력해주세요!');
+       //      return false;
+       //  }
 
         // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
         ps.keywordSearch( '홍대', placesSearchCB);
@@ -199,8 +197,6 @@ const MapTest = () => {
 
             // // 페이지 번호를 표출합니다
              displayPagination(pagination);
-
-            console.log(data)
 
         } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
 
