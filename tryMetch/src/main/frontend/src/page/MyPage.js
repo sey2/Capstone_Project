@@ -27,7 +27,18 @@ function MyPage() {
                 <br/>
                 <ProgressBar variant="primary" animated now={45} style={{width:'300px', height:'30px'}}/>
             </Figure>
-        </div>
+
+
+            {/* 메뉴 */}
+            <div>
+                <div className='menuBar'>
+                    <button className='userLike1'>내가 좋아요한 1</button>
+                    <button className='userLike1'>내가 좋아요한 1</button>
+                    <button className='userLike1'>내가 좋아요한 1</button>
+                </div>
+            </div>
+            {/* 메뉴 끝 */}
+        </div> 
         </>
     )
 }

@@ -73,20 +73,20 @@ function App() {
               title=""
               menuVariant="dark"
             >
-              <NavDropdown.Item href="#action/3.1" onClick={goToMore}>여행지 보기</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
+              <NavDropdown.Item href="" onClick={goToMore}>여행지 보기</NavDropdown.Item>
+              <NavDropdown.Item href="">
                 여행 후기
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">실시간 채팅</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3" onClick={goToMapTest}>주변 여행지 추천</NavDropdown.Item>
+              <NavDropdown.Item href="">실시간 채팅</NavDropdown.Item>
+              <NavDropdown.Item  onClick={goToMapTest}>주변 여행지 추천</NavDropdown.Item>
               
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4" onClick={goToMyPage}>
+              <NavDropdown.Item href="" onClick={goToMyPage}>
                 마이페이지
               </NavDropdown.Item>
               <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.3">로그인</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">로그아웃</NavDropdown.Item>
+                <NavDropdown.Item href="">로그인</NavDropdown.Item>
+                <NavDropdown.Item href="">로그아웃</NavDropdown.Item>
             </NavDropdown>
 
             {/* -------검색창------ */}
