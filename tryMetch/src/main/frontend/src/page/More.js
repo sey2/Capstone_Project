@@ -1,10 +1,13 @@
 import {Form} from 'react-bootstrap';
-import React from 'react'
+// import React from 'react'
 import Select from 'react-select'
 import {Col, Badge, Alert} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import ImageCard from '../ImageCard';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 
 const options1 = [
     { value: '1', label: '전라도' },
@@ -17,7 +20,22 @@ const options2 = [
     { value: '3', label: '남구' }
 ]
 
+
+
 function More() {
+
+    useEffect(() =>{
+
+        axios.get('/api/map')
+            .then(response => {
+
+                const arr = response.data
+                console.log(mapData.length)
+            })
+            .catch(error => console.log(error))
+
+    },[]);
+
     return (
         <>
             <div className="nav-solid"></div>
