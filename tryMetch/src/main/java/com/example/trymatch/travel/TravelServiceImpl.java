@@ -21,13 +21,13 @@ public class TravelServiceImpl implements TravelService{
 
         HashMap<String, String> params = new HashMap<>();
         params.put("ServiceKey", "nzMrZtg6lBh%2FJHK%2FQ4bjXqIBHVo92ACZWaS7vQfxGW8KGUEqPRGwh2%2BviL8d4TcHqhsQQV1fZRuoUpNXMPmDQg%3D%3D");
-        params.put("numOfRows", "10");
+        params.put("numOfRows", "100");
         params.put("pageNo", "1");
         params.put("MobileOS", "ETC");
         params.put("MobileApp", "AppTest");
         params.put("arrange", "P");
         params.put("listYN", "Y");
-        params.put("areaCode", local); //1 서울 //39 제주도 //5 광주 // 6 부산
+      //  params.put("areaCode", local); //1 서울 //39 제주도 //5 광주 // 6 부산
         params.put("_type", "json");
 
         String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/" + search;
