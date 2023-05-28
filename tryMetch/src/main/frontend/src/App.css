@@ -179,3 +179,33 @@
 bg-primary {
   background-color: #83a6e2;
 }
+
+.user-menu-big {
+  width: 100%;
+  padding: 20px 10px;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.userLike1 {
+  font-weight: bold;
+  margin: 30px;
+  padding-bottom: 5px;
+
+  appearance: button;
+
+  text-transform: none;
+
+  overflow: visible;
+
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+
+  background: none;
+  border: none;
+}

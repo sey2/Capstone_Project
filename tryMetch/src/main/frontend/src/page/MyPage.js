@@ -1,8 +1,19 @@
 import React from 'react'
 import { Figure } from 'react-bootstrap';
 import { ProgressBar } from 'react-bootstrap';
+import { useState } from "react";
 
 function MyPage() {
+    let data = ["내가 좋아요한 여행 후기", "내가 댓글 단 여행 후기", "내가 작성한 여행 후기"];
+
+    let [btnActive, setBtnActive] = useState("");
+
+    const toggleActive = (e) => {
+        setBtnActive((prev) => {
+        return e.target.value;
+        });
+    };
+
     return (
         <>
         <div className="nav-solid-two"></div>
@@ -29,16 +40,23 @@ function MyPage() {
             </Figure>
 
 
+        </div> 
             {/* 메뉴 */}
-            <div>
+            <div className='user-menu-big'>
                 <div className='menuBar'>
-                    <button className='userLike1'>내가 좋아요한 1</button>
-                    <button className='userLike1'>내가 좋아요한 1</button>
-                    <button className='userLike1'>내가 좋아요한 1</button>
+                {data.map((item, idx) => {
+                    return (
+                    <>
+                        <button value={idx}
+                                className={"btn" + (idx == btnActive ? " active" : "")}
+                                onClick={toggleActive}
+                                >{item}</button>
+                    </>
+                    )
+                })}
                 </div>
             </div>
             {/* 메뉴 끝 */}
-        </div> 
         </>
     )
 }
