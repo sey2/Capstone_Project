@@ -8,13 +8,20 @@ function MyPage() {
     let data = ["내가 좋아요한 여행 후기", "내가 댓글 단 여행 후기", "내가 작성한 여행 후기"];
 
     let [btnActive, setBtnActive] = useState("");
-    const [visible, setVisible] = useState(false);
+    const [select, setSelect] = useState('btn1');
 
+    //버튼 클릭시 색깔
     const toggleActive = (e) => {
         setBtnActive((prev) => {
             return e.target.value;
         });
     };
+    // const liked = () => {
+    //     const btn1 = document.querySelector('.like');
+    //     const btn2 = documn
+    // }
+    // const commented
+    // const filled
 
     return (
         <>
@@ -50,14 +57,9 @@ function MyPage() {
                         return (
                             <>
                                 <button value={idx}
-                                        className={"btn" + (idx == btnActive ? " active" : "")}
-                                        // onClick={toggleActive}
-                                        onClick={()=>{ toggleActive; data[0] = {toggleActive} ?
-                                            setVisible(!visible) : setVisible(visible)
-                                        }}
+                                    className={"btn" + (idx == btnActive ? " active" : "")}
+                                    onClick={toggleActive}
                                 >{item}</button>
-                                <hr/>
-                                {visible && <LikeInfo/>}
                             </>
                         )
                     })}

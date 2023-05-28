@@ -1,33 +1,36 @@
-import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function ImageCard() {
+    const [mapData, setMapData] = useState([]);
+
+    useEffect(() => {
+        axios.get('/api/map')
+            .then(response => {
+                setMapData(response.data);
+            })
+            .catch(error => console.log(error));
+    }, []);
+
     return (
-        <>
-            <div class="container mt-5 mb-5">
-            <div class="row">
+        <div className="container mt-5 mb-5">
+            <div className="row">
                 <div className='card-flex'>
-                <div class="col-md-3 col-sm-12 card card-img-brightness">
-                    <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200311_199%2F1583890188350cH60n_JPEG%2FewuwSU5L8pdZXSVJSEnc4oG6.JPG.jpg" class="rounded mx-auto d-block" alt="..."></img>
-                    전주 한옥마을
-                </div>
-                <div class="col-md-3 col-sm-12 card card-img-brightness">
-                    <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200311_199%2F1583890188350cH60n_JPEG%2FewuwSU5L8pdZXSVJSEnc4oG6.JPG.jpg" class="rounded mx-auto d-block" alt="..."></img>    
-                    전주 한옥마을
-                </div>
-                <div class="col-md-3 col-sm-12 card card-img-brightness">
-                    <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200311_199%2F1583890188350cH60n_JPEG%2FewuwSU5L8pdZXSVJSEnc4oG6.JPG.jpg" class="rounded mx-auto d-block" alt="..."></img>    
-                    전주 한옥마을
-                </div>
-                <div class="col-md-3 col-sm-12 card card-img-brightness">
-                    <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200311_199%2F1583890188350cH60n_JPEG%2FewuwSU5L8pdZXSVJSEnc4oG6.JPG.jpg" class="rounded mx-auto d-block" alt="..."></img>    
-                    전주 한옥마을
-                </div>
+                    {mapData.length > 0 ? (
+                        mapData.map((data, index) => (
+                            <div key={index} className="col-md-3 col-sm-12 card card-img-brightness">
+                                <img src={data.img} className="rounded mx-auto d-block" alt="..." />
+                                {data.city}
+                            </div>
+                        ))
+                    ) : (
+                        <p>Loading...</p>
+                    )}
                 </div>
             </div>
-            </div>
-        </>
-    )
+        </div>
+    );
 }
 
 export default ImageCard;

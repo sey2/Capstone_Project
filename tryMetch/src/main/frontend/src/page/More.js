@@ -24,17 +24,17 @@ const options2 = [
 
 function More() {
 
-    useEffect(() =>{
+    // useEffect(() =>{
 
-        axios.get('/api/map')
-            .then(response => {
+    //     axios.get('/api/map')
+    //         .then(response => {
 
-                const arr = response.data
-                console.log(mapData.length)
-            })
-            .catch(error => console.log(error))
+    //             const arr = response.data
+    //             console.log(mapData.length)
+    //         })
+    //         .catch(error => console.log(error))
 
-    },[]);
+    // },[]);
 
     return (
         <>
