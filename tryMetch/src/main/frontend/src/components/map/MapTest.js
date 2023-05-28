@@ -38,6 +38,25 @@ const MapTest = () => {
         console.warn('ERROR(' + err.code + '): ' + err.message);
     };
 
+    // 키워드 검색을 요청하는 함수입니다
+    const searchPlaces = (event) => {
+        event.preventDefault()
+        console.log("searchPlaces")
+
+        var keyword = document.getElementById('keyword').value;
+
+        if (!keyword.replace(/^\s+|\s+$/g, '')) {
+            alert('키워드를 입력해주세요!');
+            return false;
+        }
+
+        ps = new kakao.maps.services.Places();
+        console.log("객체생성")
+
+        // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+        ps.keywordSearch( keyword, placesSearchCB);
+    };
+
     //처음 지도 그리기
     useEffect(()=>{
         navigator.geolocation.getCurrentPosition(success, error, option);
@@ -46,7 +65,6 @@ const MapTest = () => {
        kakaoMap = new kakao.maps.Map(container, options);
        setMap(kakaoMap)
 
-        ps = new kakao.maps.services.Places();
 
         axios.get('/api/map')
             .then(response => {
@@ -138,9 +156,6 @@ const MapTest = () => {
                     setMap(marker)
                 }
 
-                // 키워드로 장소를 검색합니다
-                searchPlaces();
-
                 // kakaoMap.panTo(curLatLng)
             })
             .catch(error => console.log(error))
@@ -158,14 +173,16 @@ const MapTest = () => {
         >
             <div id="map" style={{ width: '99%', height: '1000px' }}></div>
 
+
             <div id="menu_wrap" className="bg_white">
                 <div className="option">
                     <div>
-                        <form onSubmit={searchPlaces} return={false}>
-                            검색 <input type="text" value="" id="keyword" size="15"/>
+                        <form onSubmit={searchPlaces}>
+                            검색 <input type="text" id="keyword" size="15"/>
                             <button type="submit" className="search-btn-2"> 검색하기 </button>
                         </form>
                     </div>
+
                 </div>
                     <ul id="placesList"></ul>
                     <div id="pagination"></div>
@@ -173,19 +190,6 @@ const MapTest = () => {
         </div>
     );
 
-    // 키워드 검색을 요청하는 함수입니다
-    function searchPlaces() {
-
-       // var keyword = document.getElementById('keyword').value;
-       //
-       //  if (!keyword.replace(/^\s+|\s+$/g, '')) {
-       //      alert('키워드를 입력해주세요!');
-       //      return false;
-       //  }
-
-        // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-        ps.keywordSearch( '홍대', placesSearchCB);
-    }
 
     // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
     function placesSearchCB(data, status, pagination) {
@@ -244,8 +248,8 @@ const MapTest = () => {
         listEl.appendChild(fragment);
         menuEl.scrollTop = 0;
 
-        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-        kakaoMap.setBounds(bounds);
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다 not defind err
+        // kakaoMap.setBounds(bounds);
     }
 
     // 검색결과 항목을 Element로 반환하는 함수입니다

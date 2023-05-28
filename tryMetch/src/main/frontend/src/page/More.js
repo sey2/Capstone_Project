@@ -39,28 +39,28 @@ function More() {
     return (
         <>
             <div className="nav-solid"></div>
-                <div className='option-box-margin'>
-                    {/* <h2 className='badge-br'>
+            <div className='option-box-margin'>
+                {/* <h2 className='badge-br'>
                     전국의 여행지를 찾아보세요
                     </h2> */}
-                    <Alert variant="light" className='AlertBox'>
+                <Alert variant="light" className='AlertBox'>
                     <Alert.Heading>전국의 여행지를 찾아보세요</Alert.Heading>
                     <hr />
                     <p className="mb-0">
-                    <Col md="3"className='option-box'><option className='option-color'>시/도</option><Select  options={options1} /></Col>
-                    <Col md="3"className='option-box'><option className='option-color'>시/군/구</option><Select options={options2} /></Col>
-                    <div className='GlassIcon'><FontAwesomeIcon icon={faMagnifyingGlass} size="lg" style={{color: "#83a6e2",}} /></div>
+                        <Col md="3"className='option-box'><option className='option-color'>시/도</option><Select  options={options1} /></Col>
+                        <Col md="3"className='option-box'><option className='option-color'>시/군/구</option><Select options={options2} /></Col>
+                        <div className='GlassIcon'><FontAwesomeIcon icon={faMagnifyingGlass} size="lg" style={{color: "#83a6e2",}} /></div>
                     </p>
-                    
-                    </Alert>
-                    <br/>
-                    {/* <div>
+
+                </Alert>
+                <br/>
+                {/* <div>
                     <Col md="3"className='option-box'><option className='option-color'>시/도</option><Select  options={options1} /></Col>
                     <Col md="3"className='option-box'><option className='option-color'>시/군/구</option><Select options={options2} /></Col>
                     </div> */}
-                </div>
+            </div>
             <div className="nav-solid-two"></div>
-            
+
             <ImageCard/>
             <ImageCard/>
             <ImageCard/>
