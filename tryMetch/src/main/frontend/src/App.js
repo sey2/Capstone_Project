@@ -1,3 +1,4 @@
+//App.js
 import './App.css';
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,6 +20,7 @@ import MyPage from './page/MyPage';
 import axios from 'axios';
 import MapTest from './components/map/MapTest'
 import { useEffect } from 'react';
+import Login from './page/Login';
 
 
 function App() {
@@ -26,7 +28,6 @@ function App() {
   // console.log(shoes);
   // let [shoes] = useState(data);
 
-  const [travelArr, setTravelArr] = useState([])
   
   const navigate = useNavigate()
 
@@ -41,6 +42,9 @@ function App() {
     navigate("/MapTest")
   }
 
+  const goToLogin =()=>{
+    navigate("/Login")
+  }
 
   return (
     <div className="App">
@@ -85,7 +89,7 @@ function App() {
                 마이페이지
               </NavDropdown.Item>
               <NavDropdown.Divider />
-                <NavDropdown.Item href="">로그인</NavDropdown.Item>
+                <NavDropdown.Item onClick={goToLogin}>로그인</NavDropdown.Item>
                 <NavDropdown.Item href="">로그아웃</NavDropdown.Item>
             </NavDropdown>
 
@@ -184,6 +188,7 @@ function App() {
         <Route path="/more" element={<More/>}/>
         <Route path='/MyPage' element={<MyPage/>}/>
         <Route path='/MapTest' element={<MapTest/>}/>
+        <Route path='/Login' element={<Login/>}/>
       </Routes>
 
     {/* <Container>
@@ -211,16 +216,16 @@ function App() {
 
 
 
-function Menu(props) {
-  return (
-    <div className="col-md-4">
-      <img src={"https://codingapple1.github.io/shop/shoes" + props.im + ".jpg"} width="80%" />
-      <h4>{props.shoes.title}</h4>
-      <p>{props.shoes.content}</p>
-      <p>{props.shoes.price}</p>
-    </div>
-  )
-}
+// function Menu(props) {
+//   return (
+//     <div className="col-md-4">
+//       <img src={"https://codingapple1.github.io/shop/shoes" + props.im + ".jpg"} width="80%" />
+//       <h4>{props.shoes.title}</h4>
+//       <p>{props.shoes.content}</p>
+//       <p>{props.shoes.price}</p>
+//     </div>
+//   )
+// }
 
 export default App;
 

@@ -35,14 +35,15 @@ function More() {
     //         .catch(error => console.log(error))
 
     // },[]);
+    const handleImageClick = (searchQuery) => {
+        const searchUrl = `https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=${encodeURIComponent(searchQuery)}`;
+        window.open(searchUrl, '_blank');
+    };
 
     return (
         <>
             <div className="nav-solid"></div>
             <div className='option-box-margin'>
-                {/* <h2 className='badge-br'>
-                    전국의 여행지를 찾아보세요
-                    </h2> */}
                 <Alert variant="light" className='AlertBox'>
                     <Alert.Heading>전국의 여행지를 찾아보세요</Alert.Heading>
                     <hr />
@@ -54,20 +55,13 @@ function More() {
 
                 </Alert>
                 <br/>
-                {/* <div>
-                    <Col md="3"className='option-box'><option className='option-color'>시/도</option><Select  options={options1} /></Col>
-                    <Col md="3"className='option-box'><option className='option-color'>시/군/구</option><Select options={options2} /></Col>
-                    </div> */}
             </div>
             <div className="nav-solid-two"></div>
 
-            <ImageCard/>
-            <ImageCard/>
-            <ImageCard/>
-            <ImageCard/>
-            <ImageCard/>
+            <ImageCard onImageClick={handleImageClick} />
         </>
     )
 }
 
 export default More;
+ 

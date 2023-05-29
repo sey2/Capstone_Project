@@ -2,7 +2,7 @@
 function LikeInfo() {
     return (
     <>
-        LikeInfo테스트
+        <div className="reviews">LikeInfo테스트</div>
     </>
     )
 }
