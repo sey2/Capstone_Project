@@ -152,6 +152,7 @@
 .card-flex {
   display: flex;
   border: none;
+  float: left;
 }
 
 .nav-solid-two {
@@ -208,4 +209,68 @@ bg-primary {
 
   background: none;
   border: none;
+}
+
+.reviews {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mypage-btn {
+  background-color:#0a0a23;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 1px 1px rgb(0,0,0);
+  margin-left: 10px;
+  margin-top: 10px;
+  position:fixed;
+  font-size: x-small;
+}
+
+.mypage-btn:hover {
+  background-color:#ffffff;
+  transition: 0.7s;
+  color: #000;
+}
+
+.mypage-btn-modify {
+  background-color:#0a0a23;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 1px 1px rgb(0,0,0);
+  position: fixed;
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
+
+.card-img-hover img {
+  cursor: pointer;
+}
+
+.mypage-btn-img {
+  background-color:#0a0a23;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 1px 1px rgb(0,0,0);
+  margin-left: 10px;
+  margin-top: 10px;
+  position:fixed;
+  font-size: xx-small;
+  margin-top: 80px;
+}
+
+.login-form {
+  display: flex;
+  justify-content: center;
+  margin: 100px;
 }
