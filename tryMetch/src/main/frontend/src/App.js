@@ -111,51 +111,6 @@ function App() {
               <div className='main-bg'><MainCarousel/></div>
             </>  
           {/* ------------------------------------------ */}
-          <div className='container'>
-            <div className='row'>
-            {/* <Card style={{ width: '23rem' }}>
-            <Card.Img variant="top" />
-            <Card.Body>
-              <Card.Title>
-                {
-                  <Menu shoes={shoes[0]} im={1}/>
-                } </Card.Title>
-              <Card.Text>
-                num1
-              </Card.Text>
-              <Card.Link href="#">Card Link</Card.Link>
-            </Card.Body>
-          </Card> */}
-           {/* --------------------------------- */}
-          {/* <Card style={{ width: '23rem' }}>
-            <Card.Img variant="top" />
-            <Card.Body>
-              <Card.Title>
-                {
-                  <Menu shoes={shoes[1]} im={2}/>
-                } </Card.Title>
-              <Card.Text>
-                num2
-              </Card.Text>
-              <Card.Link href="#">Card Link</Card.Link>
-            </Card.Body>
-          </Card> */}
-             {/* --------------------------------- */}
-          {/* <Card style={{ width: '23rem' }}>
-            <Card.Img variant="top" />
-            <Card.Body>
-              <Card.Title>
-                {
-                  <Menu shoes={shoes[2]} im={3}/>
-                } </Card.Title>
-              <Card.Text>
-                num3
-              </Card.Text>
-              <Card.Link href="#">Card Link</Card.Link>
-            </Card.Body>
-          </Card> */}
-          </div>
-        </div>
 
         {/* -------카드리스트 세개와 더보기 -------------- */}
           <CardList/>
@@ -171,42 +126,13 @@ function App() {
           </>
 
 
-          {/* <div className="container">
-          <div className="row">
-            {
-              shoes.map(function(data, i){
-                return (
-                    <Menu shoes={shoes[i]} img={i+1}/>
-                )
-              })
-            }
-        </div>
-        </div> */}
         </div>}/>
-        {/* <Route path="/" element={<ProductAll/>}/> */}
-        {/* <Route path='/detail' element={<Detail/>}/> */}
         <Route path="/more" element={<More/>}/>
         <Route path='/MyPage' element={<MyPage/>}/>
         <Route path='/MapTest' element={<MapTest/>}/>
         <Route path='/Login' element={<Login/>}/>
       </Routes>
 
-    {/* <Container>
-      <Row>
-        <Col sm>상품1</Col>
-          <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="80%"/>
-          <h4>상품명</h4>
-          <p>상품 설명</p>
-        <Col sm>상품2</Col>
-          <img src="https://codingapple1.github.io/shop/shoes2.jpg" width="80%"/>
-          <h4>상품명</h4>
-          <p>상품 설명</p>
-        <Col sm>상품3</Col>
-          <img src="https://codingapple1.github.io/shop/shoes3.jpg" width="80%"/>
-          <h4>상품명</h4>
-          <p>상품 설명</p>
-      </Row>
-    </Container> */}
 
 
 
@@ -214,12 +140,10 @@ function App() {
   );
 }
 
-
-
 // function Menu(props) {
 //   return (
 //     <div className="col-md-4">
-//       <img src={"https://codingapple1.github.io/shop/shoes" + props.im + ".jpg"} width="80%" />
+//       <img src={"" + props.im + ".jpg"} width="80%" />
 //       <h4>{props.shoes.title}</h4>
 //       <p>{props.shoes.content}</p>
 //       <p>{props.shoes.price}</p>
