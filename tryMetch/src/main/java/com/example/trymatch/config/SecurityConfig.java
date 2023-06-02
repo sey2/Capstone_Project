@@ -6,6 +6,9 @@ import com.example.trymatch.security.handler.ApiLoginFailHandler;
 import com.example.trymatch.security.handler.ClubLoginSuccessHandler;
 import com.example.trymatch.security.service.ClubUserDetailsService;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +18,18 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import java.io.IOException;
 
 
 /***
@@ -89,20 +98,41 @@ public class SecurityConfig {
         AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
         http.authenticationManager(authenticationManager);
 
-        http.formLogin().successHandler(successHandler()); // 인가 인증에 문제시 로그인 화면 띄우기 (유저 권한인데 관리자 페이지에 접속 시도하거나 그럴 때)
+        http.formLogin().
+                loginPage("/sample/login.html").
+                usernameParameter("id").
+                passwordParameter("pw").
+                loginProcessingUrl("/login")
+                .successHandler(new AuthenticationSuccessHandler() {
+                    @Override
+                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+                        System.out.println("authentication : " + authentication.getName());
+                        response.sendRedirect("/");
+                    }
+                })
+                .failureHandler(new AuthenticationFailureHandler() {
+                    @Override
+                    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+                        System.out.println("exception : " + exception.getMessage());
+                        response.sendRedirect("/sample/login");
+                    }
+                }); // 인가 인증에 문제시 로그인 화면 띄우기 (유저 권한인데 관리자 페이지에 접속 시도하거나 그럴 때)
+
         http.csrf().disable();  // CSRF 토큰 발행하지 않음 설정
         //  http.logout();  // 인가 인증에 문제시 로그아웃 화면 띄우기, CSRF 토큰을 사용할 때는 반드시 POST 방식으로만 로그아웃 처리해야함
-        http.logout(); // csrf 토큰 비활성화시 GET 방식으로 로그아웃
+        http.logout().logoutSuccessUrl("/"); // csrf 토큰 비활성화시 GET 방식으로 로그아웃
+
+//        http.httpBasic();
 
         // google login
-        http.oauth2Login().successHandler(successHandler());
+//        http.oauth2Login().successHandler(successHandler());
 
         // 소셜 로그인은 사용하지 못함
         // rememberMe를 사용하면 웹의 인증 방식 중에 쿠키를 사용하는 방식이다
         // 이 기능을 활용하면 한번 로그인한 사용자가 브라우저를 닫은 후 다시 서비스에 접속해도 별도의 로그인 절차 없이 바로 로그인 처리 가능
-        http.rememberMe()
-                .tokenValiditySeconds(60*60*24*7)   // 얼마나 유지할지 <- 해당 코드는 7일간 유지
-                .userDetailsService(userDetailsService);
+//        http.rememberMe()
+//                .tokenValiditySeconds(60*60*24*7)   // 얼마나 유지할지 <- 해당 코드는 7일간 유지
+//                .userDetailsService(userDetailsService);
 
         // API Check Filter 동작 순서를 UsernamePasswordAuthenticationFilter 이전에 실행
         http.addFilterBefore(apiCheckFilter(), UsernamePasswordAuthenticationFilter.class);
