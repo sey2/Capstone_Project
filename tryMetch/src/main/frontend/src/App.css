@@ -297,3 +297,7 @@ bg-primary {
 .menuBar {
   margin: 10px;
 }
+
+.dropdown-text {
+  color: #ffffff;
+}
