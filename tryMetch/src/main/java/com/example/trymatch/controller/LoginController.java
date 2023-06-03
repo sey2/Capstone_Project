@@ -19,6 +19,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Controller
 @Log4j2
+@CrossOrigin(originPatterns = "http://localhost:8081")
 @RequestMapping("/sample/")
 public class LoginController {
 
