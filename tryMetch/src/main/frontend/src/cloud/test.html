@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Firebase Photo Upload Test</title>
+    <!-- Firebase SDK 라이브러리 -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-storage.js"></script>
+    <script src="firebase.js"></script>
+</head>
+<body>
+<input type="file" id="file-input">
+<button onclick="uploadFile()">Upload</button>
+
+<!--<script>--> 이거는 돼 주석 풀면
+<!--    // Firebase 구성 정보-->
+<!--    var firebaseConfig = {-->
+<!--        apiKey: "AIzaSyDlK-KHpaQZVaEr5Yb7SNeiIeX5yL8uRzk",-->
+<!--        authDomain: "imgupload-b5b20.firebaseapp.com",-->
+<!--        projectId: "imgupload-b5b20",-->
+<!--        storageBucket: "imgupload-b5b20.appspot.com",-->
+<!--        messagingSenderId: "400718836366",-->
+<!--        appId: "1:400718836366:web:a73109087c193140274fdf",-->
+<!--        measurementId: "G-9MBX8BJMBY"-->
+<!--    };-->
+<!--    // Firebase 초기화-->
+<!--    firebase.initializeApp(firebaseConfig);-->
+
+<!--    // 스토리지 참조 가져오기-->
+<!--    var storage = firebase.storage();-->
+
+<!--    function uploadFile() {-->
+<!--        var fileInput = document.getElementById('file-input');-->
+<!--        var file = fileInput.files[0];-->
+<!--        if (file) {-->
+<!--            var storageRef = storage.ref();-->
+<!--            var fileRef = storageRef.child(file.name);-->
+<!--            fileRef.put(file)-->
+<!--                .then(function(snapshot) {-->
+<!--                    console.log('File uploaded:', snapshot);-->
+<!--                })-->
+<!--                .catch(function(error) {-->
+<!--                    console.error('File upload failed:', error);-->
+<!--                });-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+</body>
+</html>
