@@ -60,7 +60,7 @@ function MyPage() {
         <>
         <div className="nav-solid-two"></div>
         <div className="profile">
-            <Figure>
+            <Figure className='real-profile'>
             <h6>프로필</h6>
             <Figure.Image
                 className="rounded-circle"
@@ -80,12 +80,13 @@ function MyPage() {
             <button className="mypage-btn-img" onClick={handleResetProfile}>
                 reset
             </button>
-            <Figure.Caption>
-                홍길동
+            <Figure.Caption >
+                <div className="black-text">홍길동</div>
                 <br />
                 {editing ? (
                 <>
-                    <textarea
+                    <textarea 
+                    className='text-area'
                     value={intro}
                     onChange={handleIntroChange}
                     placeholder="인삿말을 등록하세요."
@@ -100,52 +101,61 @@ function MyPage() {
                 </>
                 )}
                 <br />
-                이메일
+                <div className="black-text">e-mail</div>
                 <br />
-                위치
+                <div className='black-text'>location</div>
             </Figure.Caption>
             <br />
-            <ProgressBar variant="primary" animated now={45} style={{ width: '300px', height: '30px' }} />
+            {/* <ProgressBar variant="primary" animated now={45} style={{ width: '300px', height: '30px'}} /> */}
             </Figure>
             <br />
-        </div>
+        
         {/* 메뉴 */}
         <div className="user-menu-big">
             <div className="menuBar">
-            <button
-                
-                value="btn1"
-                className={`btn ${select === 'btn1' ? 'active' : ''}` }
-                onClick={() => handleButtonClick('btn1')}
-            >
-                내가 좋아요한 여행 후기
-            </button>
-            <button
-                value="btn2"
-                className={`btn ${select === 'btn2' ? 'active' : ''}`}
-                onClick={() => handleButtonClick('btn2')}
-            >
-                내가 댓글 단 여행 후기
-            </button>
-            <button
-                value="btn3"
-                className={`btn ${select === 'btn3' ? 'active' : ''}`}
-                onClick={() => handleButtonClick('btn3')}
-            >
-                내가 작성한 여행 후기
-            </button>
+                <div className='menu-bar-btn'>
+                    <button
+                        value="btn1"
+                        className={`new-btn ${select === 'btn1' ? 'active' : ''}` }
+                        onClick={() => handleButtonClick('btn1')}
+                    >
+                        내가 좋아요한 <br/>여행 후기
+                    </button>
+                </div>
+                <div className='menu-bar-btn'>
+                    <button
+                        value="btn2"
+                        className={`new-btn ${select === 'btn2' ? 'active' : ''}`}
+                        onClick={() => handleButtonClick('btn2')}
+                    >
+                        내가 댓글 단 <br/>여행 후기
+                    </button>
+                </div>
+                <div className='menu-bar-btn'>
+                    <button
+                        value="btn3"
+                        className={`new-btn ${select === 'btn3' ? 'active' : ''}`}
+                        onClick={() => handleButtonClick('btn3')}
+                    >
+                        내가 작성한 <br/>여행 후기
+                    </button>
+                </div>
             </div>
         </div>
-        {/* 메뉴 끝 */}
-        {/* 선택한 버튼에 따른 컴포넌트 렌더링 */}
-        {select === 'btn1' && <LikeInfo />}
-        {/* btn1을 눌렀을 때 보여줄 컴포넌트 */}
-        {select === 'btn2' && <CommentedInfo />}
-        {/* btn2를 눌렀을 때 보여줄 컴포넌트 */}
-        {select === 'btn3' && <MyReviews />}
-        {/* btn3을 눌렀을 때 보여줄 컴포넌트 */}
+            <div>
+            {/* 메뉴 끝 */}
+            {/* 선택한 버튼에 따른 컴포넌트 렌더링 */}
+            {select === 'btn1' && <LikeInfo />}
+            {/* btn1을 눌렀을 때 보여줄 컴포넌트 */}
+            {select === 'btn2' && <CommentedInfo />}
+            {/* btn2를 눌렀을 때 보여줄 컴포넌트 */}
+            {select === 'btn3' && <MyReviews />}
+            {/* btn3을 눌렀을 때 보여줄 컴포넌트 */}
+            </div>
+        </div>
         </>
     );
 }
 
 export default MyPage;
+ 
