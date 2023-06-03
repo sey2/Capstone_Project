@@ -167,16 +167,12 @@
   text-align: center;
 }
 
-.profile {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 13px;
-}
+
 
 .progress-bar {
   width: 400px;
+  /* color: #97c8ff; */
+  background-color: #83a6e2;
 }
 
 bg-primary {
@@ -217,6 +213,7 @@ bg-primary {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .spinner-display {
@@ -231,8 +228,7 @@ bg-primary {
   border: none;
   border-radius: 5px;
   box-shadow: 0px 0px 1px 1px rgb(0,0,0);
-  margin-left: 10px;
-  margin-top: 10px;
+  margin: 5%;
   position:fixed;
   font-size: x-small;
 }
@@ -295,9 +291,85 @@ bg-primary {
 }
 
 .menuBar {
-  margin: 10px;
+  
 }
 
 .dropdown-text {
   color: #ffffff;
+}
+
+.menu-bar-btn {
+  /* margin: 10%; */
+  margin-right: 10px;
+  padding: 10%;
+  float: left;
+  position: relative;
+}
+
+.profile {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  text-align: center;
+  padding: 13px;
+  margin-left: 20%;
+  margin-top: 3%;
+  
+}
+
+.profile .user-menu-big {
+  flex: 1;
+}
+/* 3961a5 */
+.real-profile {
+  border: solid #6aafe6;
+  padding: 15px;
+  background-color: #6aafe6;
+  color: black;
+  border-width: 45px;
+  border-radius: 1%;
+}
+
+.black-text {
+  color: black;
+}
+
+.new-btn {
+  background-color: #6aafe6;
+  box-sizing: border-box;
+  color: #ffffff;
+  position: relative;
+  border: none;
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-family: "paybooc-Light", sans-serif;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s;
+  /* float: left; */
+  padding: 10%;
+  margin: -10%;
+  width: 170px;
+  height: 100px;
+  position: relative;
+}
+
+.mypage-btn, .mypage-btn-img {
+  position: sticky;
+  top: 0;
+}
+
+.rounded-circle{
+  margin-left: 20%;
+}
+
+.text-area {
+  margin-left: 2%;
+}
+
+.new-btn.active {
+  background-color: #fff;
+  color: #000;
 }

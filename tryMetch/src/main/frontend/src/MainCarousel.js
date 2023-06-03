@@ -34,9 +34,9 @@ function MainCarousel() {
             alt="Third slide"
             />
         <Carousel.Caption>
-            <h5 className='slide-one'>잘 맞는 친구와 독일 여행</h5>
+            <h5 className='slide-one'>마음이 잘 맞는 친구와 독일 여행</h5>
             <p className='slide-font'>
-            성향이 비슷한 사람끼리, 비슷한 MBTI를 가진 사람끼리 여행 갈 수 있어요
+            성향이 비슷한 사람끼리, 비슷한 MBTI를 가진 사람끼리 여행 갈 수 있어요 :)
             </p>
         </Carousel.Caption>
         </Carousel.Item>
