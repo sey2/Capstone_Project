@@ -5,6 +5,9 @@ import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import { NavDropdown } from 'react-bootstrap';
 import NavSearch from './NavSearch';
 
+import Header from './components/Header';
+import SignUp from "./page/sign-up/SignUp";
+
 function NavDrop() {
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const navigate = useNavigate();
@@ -25,6 +28,19 @@ function NavDrop() {
         navigate('/Login');
     };
 
+    const goToBoard =()=> {
+        navigate("/board-list") 
+      }
+
+      const goToChat =()=>{
+        navigate("/chatgpt")
+      }
+
+
+
+
+
+
     const showDropdown = () => {
         setDropdownVisible(true);
     };
@@ -43,6 +59,9 @@ function NavDrop() {
                 떠나 Match
                 </Link>
             </Navbar.Brand>
+
+            <Header/>
+
             </div>
             <Navbar.Toggle aria-controls="navbar-dark-example" />
             <Navbar.Collapse id="navbar-dark-example">
@@ -58,8 +77,15 @@ function NavDrop() {
                 <NavDropdown.Item onClick={() => window.location.href = '/more'}>
                     여행지 보기
                 </NavDropdown.Item>
+                
+                <NavDropdown.Item onClick={() => window.location.href = '/board-list'}>
+                여행 후기 게시판
+              </NavDropdown.Item>
+
                 <NavDropdown.Item>여행 후기</NavDropdown.Item>
-                <NavDropdown.Item>챗봇 여행지 추천</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => window.location.href = '/chatgpt'}>
+                챗봇 여행지 추천</NavDropdown.Item>
+               
                 <NavDropdown.Item onClick={() => window.location.href = '/MapTest'}>
                     주변 여행지 추천
                 </NavDropdown.Item>
@@ -79,7 +105,7 @@ function NavDrop() {
                     로그아웃
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item onClick={() => window.location.href = '/Login'}>
+                    <NavDropdown.Item onClick={() => window.location.href = '/sign-up'}>
                     회원가입
                     </NavDropdown.Item>
                 </NavDropdown>
