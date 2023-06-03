@@ -31,8 +31,8 @@ const Header= ()=>{
         <div className="header-wrapper">
 
             <div className="header-menu">
-                <Link to="/board-list?page=1">여행 후기 게시판</Link>
-                <Link to="/add-board">글쓰기</Link>
+                {/* <Link to="/board-list?page=1">여행 후기 게시판</Link> */}
+                {/* <Link to="/add-board">글쓰기</Link> */}
                 {isAuth ? (
                     <>
                     {/* <Link to="/myboard-list?page=1">내 게시물</Link>
@@ -42,7 +42,7 @@ const Header= ()=>{
                 ) : (
                     <>
                     <Link to="/myboard-list?page=1">내 게시물</Link>
-                    <Link to="#" onClick={logout}>로그아웃</Link>
+                    {/* <Link to="#" onClick={logout}>로그아웃</Link> */}
                     <Link to="/login?#action/3.3">로그인</Link>
                     <Link to="/sign-up">회원가입</Link>
                 </>
