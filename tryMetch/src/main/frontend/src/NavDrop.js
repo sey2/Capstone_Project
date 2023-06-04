@@ -58,7 +58,7 @@ function NavDrop() {
                                 <NavDropdown.Item onClick={() => navigate("/more")}>
                                     여행지 보기
                                 </NavDropdown.Item>
-                                <NavDropdown.Item onClick={() => navigate("/Board")}>
+                                <NavDropdown.Item onClick={() => navigate('/board-list')}>
                                     여행 후기
                                 </NavDropdown.Item>
                                 <NavDropdown.Item onClick={()=> navigate("/Chatgpt")}>
