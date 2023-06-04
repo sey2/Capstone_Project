@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- <link rel="stylesheet" href="style.css" type="text/css"> -->
+    <style>
+        * {
+            font-family: -apple-system, BlinkMacSystemFont, "San Francisco", Helvetica, Arial, sans-serif;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        html, body {
+            height: 100vh;
+            width: 100vw;
+            margin: 0 0;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            background: #f3f2f2;
+        }
+
+        h4 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #000;
+            opacity: 0.85;
+        }
+
+        label {
+            font-size: 12.5px;
+            color: #000;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+
+        form {
+            padding: 40px 30px;
+            background: #fefefe;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-bottom: 20px;
+            width: 300px;
+        }
+        form h4 {
+            margin-bottom: 20px;
+            color: rgba(0, 0, 0, 0.5);
+        }
+        form h4 span {
+            color: black;
+            font-weight: 700;
+        }
+        form p {
+            line-height: 155%;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #000;
+            opacity: 0.65;
+            font-weight: 400;
+            max-width: 300px;
+            margin-bottom: 40px;
+        }
+
+        a.discrete {
+            color: rgba(0, 0, 0, 0.4);
+            font-size: 14px;
+            border-bottom: solid 1px rgba(0, 0, 0, 0);
+            padding-bottom: 4px;
+            margin-left: auto;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            margin-top: 40px;
+        }
+        a.discrete:hover {
+            border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            -webkit-appearance: none;
+            width: auto;
+            min-width: 100px;
+            border-radius: 24px;
+            text-align: center;
+            padding: 15px 40px;
+            margin-top: 5px;
+            background-color: #b08bf8;
+            color: #fff;
+            font-size: 14px;
+            margin-left: auto;
+            font-weight: 500;
+            box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.13);
+            border: none;
+            transition: all 0.3s ease;
+            outline: 0;
+        }
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 2px 6px -1px rgba(182, 157, 230, 0.65);
+        }
+        button:hover:active {
+            transform: scale(0.99);
+        }
+
+        input {
+            font-size: 16px;
+            padding: 20px 0px;
+            height: 56px;
+            border: none;
+            border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            width: 280px;
+            box-sizing: border-box;
+            transition: all 0.3s linear;
+            color: #000;
+            font-weight: 400;
+            -webkit-appearance: none;
+        }
+        input:focus {
+            border-bottom: solid 1px #b69de6;
+            outline: 0;
+            box-shadow: 0 2px 6px -8px rgba(182, 157, 230, 0.45);
+        }
+
+        .floating-label {
+            position: relative;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        .floating-label label {
+            position: absolute;
+            top: calc(50% - 7px);
+            left: 0;
+            opacity: 0;
+            transition: all 0.3s ease;
+            padding-left: 44px;
+        }
+        .floating-label input {
+            width: calc(100% - 44px);
+            margin-left: auto;
+            display: flex;
+        }
+        .floating-label .icon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 56px;
+            width: 44px;
+            display: flex;
+        }
+        .floating-label .icon svg {
+            height: 30px;
+            width: 30px;
+            margin: auto;
+            opacity: 0.15;
+            transition: all 0.3s ease;
+        }
+        .floating-label .icon svg path {
+            transition: all 0.3s ease;
+        }
+        .floating-label input:not(:placeholder-shown) {
+            padding: 28px 0px 12px 0px;
+        }
+        .floating-label input:not(:placeholder-shown) + label {
+            transform: translateY(-10px);
+            opacity: 0.7;
+        }
+        .floating-label input:valid:not(:placeholder-shown) + label + .icon svg {
+            opacity: 1;
+        }
+        .floating-label input:valid:not(:placeholder-shown) + label + .icon svg path {
+            fill: #b69de6;
+        }
+        .floating-label input:not(:valid):not(:focus) + label + .icon {
+            animation-name: shake-shake;
+            animation-duration: 0.3s;
+        }
+
+        @keyframes shake-shake {
+            0% {
+                transform: translateX(-3px);
+            }
+            20% {
+                transform: translateX(3px);
+            }
+            40% {
+                transform: translateX(-3px);
+            }
+            60% {
+                transform: translateX(3px);
+            }
+            80% {
+                transform: translateX(-3px);
+            }
+            100% {
+                transform: translateX(0px);
+            }
+        }
+        .session {
+            display: flex;
+            flex-direction: row;
+            width: auto;
+            height: auto;
+            margin: auto auto;
+            background: #ffffff;
+            border-radius: 4px;
+            box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.12);
+        }
+
+        .left {
+            width: 220px;
+            height: auto;
+            min-height: 100%;
+            position: relative;
+            background-image: url("https://images.pexels.com/photos/114979/pexels-photo-114979.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+            background-size: cover;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+        .left svg {
+            height: 40px;
+            width: auto;
+            margin: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<div class="session">
+    <div class="left">
+        <?xml version="1.0" encoding="UTF-8"?>
+        <svg enable-background="new 0 0 300 302.5" version="1.1" viewBox="0 0 300 302.5" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+            <style type="text/css">
+   .st01{fill:#fff;}
+</style>
+            <path class="st01" d="m126 302.2c-2.3 0.7-5.7 0.2-7.7-1.2l-105-71.6c-2-1.3-3.7-4.4-3.9-6.7l-9.4-126.7c-0.2-2.4 1.1-5.6 2.8-7.2l93.2-86.4c1.7-1.6 5.1-2.6 7.4-2.3l125.6 18.9c2.3 0.4 5.2 2.3 6.4 4.4l63.5 110.1c1.2 2 1.4 5.5 0.6 7.7l-46.4 118.3c-0.9 2.2-3.4 4.6-5.7 5.3l-121.4 37.4zm63.4-102.7c2.3-0.7 4.8-3.1 5.7-5.3l19.9-50.8c0.9-2.2 0.6-5.7-0.6-7.7l-27.3-47.3c-1.2-2-4.1-4-6.4-4.4l-53.9-8c-2.3-0.4-5.7 0.7-7.4 2.3l-40 37.1c-1.7 1.6-3 4.9-2.8 7.2l4.1 54.4c0.2 2.4 1.9 5.4 3.9 6.7l45.1 30.8c2 1.3 5.4 1.9 7.7 1.2l52-16.2z"/>
+</svg>
+    </div>
+    <form action="/SignUp" class="log-in" autocomplete="off" method="POST">
+        <h4> 떠나 <span>Match</span></h4>
+        <p>환영합니다! <br>계정에 회원가입하여 <br/>더 많은 여행지 정보를 받으세요!</p>
+
+        <!-- ------------------------------------------------- -->
+        <!-- <div>test0</div> -->
+        <!-- ------------------------------------------------- -->
+        <div class="floating-label">
+            <input placeholder="Email" type="text" class="form-control" name="id" id="email" autocomplete="off">
+            <label for="email">Email</label>
+            <div class="icon">
+                <?xml version="1.0" encoding="UTF-8"?>
+                <svg enable-background="new 0 0 100 100" version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+
+        <style type="text/css">
+            .st0{fill:none;}
+        </style>
+                    <g transform="translate(0 -952.36)">
+            <path d="m17.5 977c-1.3 0-2.4 1.1-2.4 2.4v45.9c0 1.3 1.1 2.4 2.4 2.4h64.9c1.3 0 2.4-1.1 2.4-2.4v-45.9c0-1.3-1.1-2.4-2.4-2.4h-64.9zm2.4 4.8h60.2v1.2l-30.1 22-30.1-22v-1.2zm0 7l28.7 21c0.8 0.6 2 0.6 2.8 0l28.7-21v34.1h-60.2v-34.1z"/>
+            </g>
+                    <rect class="st0" width="100" height="100"/>
+        </svg>
+
+            </div>
+        </div>
+        <!-- ------------------------------------------------- -->
+        <div class="floating-label">
+            <input placeholder="아이디" type="text" class="form-control" name="id" id="email" autocomplete="off">
+            <label for="email">아이디</label>
+            <div class="icon">
+
+                <?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title/><g id="about"><path d="M16,16A7,7,0,1,0,9,9,7,7,0,0,0,16,16ZM16,4a5,5,0,1,1-5,5A5,5,0,0,1,16,4Z"/><path d="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z"/></g></svg>
+                <style type="text/css">
+                    .st0{fill:none;}
+                </style>
+                <g transform="translate(0 -952.36)">
+                    <path d="m17.5 977c-1.3 0-2.4 1.1-2.4 2.4v45.9c0 1.3 1.1 2.4 2.4 2.4h64.9c1.3 0 2.4-1.1 2.4-2.4v-45.9c0-1.3-1.1-2.4-2.4-2.4h-64.9zm2.4 4.8h60.2v1.2l-30.1 22-30.1-22v-1.2zm0 7l28.7 21c0.8 0.6 2 0.6 2.8 0l28.7-21v34.1h-60.2v-34.1z"/>
+                </g>
+                <rect class="st0" width="100" height="100"/>
+                </svg>
+
+            </div>
+        </div>
+        <!-- ------------------------------------------------- -->
+        <!-- <div> test1 </div> -->
+        <!-- ------------------------------------------------- -->
+        <div class="floating-label">
+            <input placeholder="비밀번호" class="form-control" type="password" name="pw" id="password" autocomplete="off">
+            <label for="password">비밀번호</label>
+            <div class="icon">
+
+                <?xml version="1.0" encoding="UTF-8"?>
+                <svg enable-background="new 0 0 24 24" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+            <style type="text/css">
+                .st0{fill:none;}
+                .st1{fill:#010101;}
+            </style>
+
+
+                    <rect class="st0" width="24" height="24"/>
+                    <path class="st1" d="M19,21H5V9h14V21z M6,20h12V10H6V20z"/>
+                    <path class="st1" d="M16.5,10h-1V7c0-1.9-1.6-3.5-3.5-3.5S8.5,5.1,8.5,7v3h-1V7c0-2.5,2-4.5,4.5-4.5s4.5,2,4.5,4.5V10z"/>
+                    <path class="st1" d="m12 16.5c-0.8 0-1.5-0.7-1.5-1.5s0.7-1.5 1.5-1.5 1.5 0.7 1.5 1.5-0.7 1.5-1.5 1.5zm0-2c-0.3 0-0.5 0.2-0.5 0.5s0.2 0.5 0.5 0.5 0.5-0.2 0.5-0.5-0.2-0.5-0.5-0.5z"/>
+            </svg>
+            </div>
+
+        </div>
+
+        <!-- ------------------------------------------------- -->
+
+        <div class="floating-label">
+            <input placeholder="비밀번호 확인" class="form-control" type="password" name="pw" id="password" autocomplete="off">
+            <label for="password">비밀번호 확인</label>
+            <div class="icon">
+
+                <?xml version="1.0" encoding="UTF-8"?>
+                <svg enable-background="new 0 0 24 24" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+            <style type="text/css">
+                .st0{fill:none;}
+                .st1{fill:#010101;}
+            </style>
+                    <rect class="st0" width="24" height="24"/>
+                    <path class="st1" d="M19,21H5V9h14V21z M6,20h12V10H6V20z"/>
+                    <path class="st1" d="M16.5,10h-1V7c0-1.9-1.6-3.5-3.5-3.5S8.5,5.1,8.5,7v3h-1V7c0-2.5,2-4.5,4.5-4.5s4.5,2,4.5,4.5V10z"/>
+                    <path class="st1" d="m12 16.5c-0.8 0-1.5-0.7-1.5-1.5s0.7-1.5 1.5-1.5 1.5 0.7 1.5 1.5-0.7 1.5-1.5 1.5zm0-2c-0.3 0-0.5 0.2-0.5 0.5s0.2 0.5 0.5 0.5 0.5-0.2 0.5-0.5-0.2-0.5-0.5-0.5z"/>
+        </svg>
+            </div>
+        </div>
+        <!-- ------------------------------------------------- -->
+        <!-- <div>test2</div> -->
+        <br/><br/>
+        <!-- ------------------------------------------------- -->
+        <div class="floating-label">
+            <input placeholder="이름" type="text" class="form-control" name="id" id="email" autocomplete="off">
+            <label for="email">이름</label>
+            <div class="icon">
+                <?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title/><g id="about"><path d="M16,16A7,7,0,1,0,9,9,7,7,0,0,0,16,16ZM16,4a5,5,0,1,1-5,5A5,5,0,0,1,16,4Z"/><path d="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z"/></g></svg>
+                </style>
+                <g transform="translate(0 -952.36)">
+                    <path d="m17.5 977c-1.3 0-2.4 1.1-2.4 2.4v45.9c0 1.3 1.1 2.4 2.4 2.4h64.9c1.3 0 2.4-1.1 2.4-2.4v-45.9c0-1.3-1.1-2.4-2.4-2.4h-64.9zm2.4 4.8h60.2v1.2l-30.1 22-30.1-22v-1.2zm0 7l28.7 21c0.8 0.6 2 0.6 2.8 0l28.7-21v34.1h-60.2v-34.1z"/>
+                </g>
+                <rect class="st0" width="100" height="100"/>
+                </svg>
+
+            </div>
+        </div>
+        <!-- ------------------------------------------------- -->
+        <div class="floating-label">
+            <input placeholder="생년월일" type="text" class="form-control" name="id" id="email" autocomplete="off">
+            <label for="email">생년월일</label>
+            <div class="icon">
+                <?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#101820;}</style></defs><title/><g data-name="Layer 36" id="Layer_36"><path class="cls-1" d="M26,29H2a1,1,0,0,1-1-1V8A2,2,0,0,1,3,6H29a2,2,0,0,1,2,2V24a1,1,0,0,1-.29.71l-4,4A1,1,0,0,1,26,29ZM3,27H25.59L29,23.59V8H3ZM29,8h0Z"/><rect class="cls-1" height="3" width="2" x="15" y="4"/><rect class="cls-1" height="3" width="2" x="6" y="4"/><rect class="cls-1" height="3" width="2" x="24" y="4"/><path class="cls-1" d="M30,14H2a1,1,0,0,1,0-2H30a1,1,0,0,1,0,2Z"/><path class="cls-1" d="M13,24a1,1,0,0,1-1-1V18.62l-.55.27a1,1,0,0,1-.9-1.78l2-1A1,1,0,0,1,14,17v6A1,1,0,0,1,13,24Z"/><path class="cls-1" d="M20,24H18a2,2,0,0,1-2-2V18a2,2,0,0,1,2-2h2a2,2,0,0,1,2,2v4A2,2,0,0,1,20,24Zm-2-6v4h2V18Z"/><polygon class="cls-1" points="30 24 26 28 26 24 30 24"/><path class="cls-1" d="M26,29a.84.84,0,0,1-.38-.08A1,1,0,0,1,25,28V24a1,1,0,0,1,1-1h4a1,1,0,0,1,.92.62,1,1,0,0,1-.21,1.09l-4,4A1,1,0,0,1,26,29Zm1-4v.59l.59-.59Z"/></g></svg>
+                <style type="text/css">
+                    .st0{fill:none;}
+                </style>
+                <g transform="translate(0 -952.36)">
+                    <path d="m17.5 977c-1.3 0-2.4 1.1-2.4 2.4v45.9c0 1.3 1.1 2.4 2.4 2.4h64.9c1.3 0 2.4-1.1 2.4-2.4v-45.9c0-1.3-1.1-2.4-2.4-2.4h-64.9zm2.4 4.8h60.2v1.2l-30.1 22-30.1-22v-1.2zm0 7l28.7 21c0.8 0.6 2 0.6 2.8 0l28.7-21v34.1h-60.2v-34.1z"/>
+                </g>
+                <rect class="st0" width="100" height="100"/>
+                </svg>
+
+            </div>
+        </div>
+        <!-- ------------------------------------------------- -->
+        <div class="floating-label">
+            <input placeholder="MBTI" type="text" class="form-control" name="id" id="email" autocomplete="off">
+            <label for="email">MBTI</label>
+            <div class="icon">
+                <?xml version="1.0" ?><svg data-name="Layer 1" id="Layer_1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><title/><polygon points="12 17 14 17 14 22 16 22 16 17 18 17 18 15 12 15 12 17"/><path d="M28,2H2V28H28ZM22,26H8V19a6.99974,6.99974,0,0,1,4.82355-6.65057,4,4,0,1,1,4.3529,0A6.99974,6.99974,0,0,1,22,19Z"/><polygon points="49 22 52 17 46 17 49 22"/><path d="M36,28H62V2H36Zm6-9a6.99974,6.99974,0,0,1,4.82355-6.65057,4,4,0,1,1,4.3529,0A6.99974,6.99974,0,0,1,56,19v7H42Z"/><circle cx="49" cy="54" r="3"/><path d="M36,62H62V36H36Zm6-7a6.99974,6.99974,0,0,1,4.82355-6.65057,4,4,0,1,1,4.3529,0A6.99974,6.99974,0,0,1,56,55v5H42Z"/><rect height="4" width="4" x="13" y="52"/><path d="M28,36H2V62H28ZM22,60H8V55a6.99974,6.99974,0,0,1,4.82355-6.65057,4,4,0,1,1,4.3529,0A6.99974,6.99974,0,0,1,22,55Z"/></svg>
+                <style type="text/css">
+                    .st0{fill:none;}
+                </style>
+                <g transform="translate(0 -952.36)">
+                    <path d="m17.5 977c-1.3 0-2.4 1.1-2.4 2.4v45.9c0 1.3 1.1 2.4 2.4 2.4h64.9c1.3 0 2.4-1.1 2.4-2.4v-45.9c0-1.3-1.1-2.4-2.4-2.4h-64.9zm2.4 4.8h60.2v1.2l-30.1 22-30.1-22v-1.2zm0 7l28.7 21c0.8 0.6 2 0.6 2.8 0l28.7-21v34.1h-60.2v-34.1z"/>
+                </g>
+                <rect class="st0" width="100" height="100"/>
+                </svg>
+
+            </div>
+        </div>
+        <!-- ------------------------------------------------- -->
+        <button type="submit" value="login">회원가입</button>
+        <a href="login.html" class="discrete" target="_blank">로그인</a>
+    </form>
+</div>
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var username = document.querySelector('#email').value.trim();
+        var userpw = document.querySelector('#password').value.trim();
+        // var userlen = document.querySelector('#email #password').value;
+
+        if (username === '') {
+            alert('아이디를 입력해주세요.');
+            return;
+        }
+
+        if (userpw === '') {
+            alert('비밀번호를 입력해주세요.');
+            return;
+        }
+
+        // if (userlen.length < 6) {
+        //     alert("6자 이상으로 입력하세요.");
+        // }
+
+        this.action = 'your-submit-url';
+        this.submit();
+    });
+</script>
+
+<script>
+    function submitForm(event) {
+        event.preventDefault();
+        var email = document.querySelector('input[name="email"]').value;
+        var name = document.querySelector('input[name="name"]').value;
+        var password = document.querySelector('input[name="password"]').value;
+        var mbti = document.querySelector('input[name="mbti"]').value;
+
+        var data = {
+            "email": email,
+            "name": name,
+            "password": password,
+            "mbti": mbti
+        };
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:8081/sample/SignUp", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                    window.location.href = "SignUp.html"; // register.html로 이동
+                } else {
+                    console.log("Error: " + xhr.status);
+                }
+            }
+        };
+
+        xhr.send(JSON.stringify(data));
+    }
+</script>
+
+
+</body>
+</html>
