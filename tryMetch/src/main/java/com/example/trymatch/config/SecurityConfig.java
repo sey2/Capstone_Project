@@ -1,9 +1,11 @@
 package com.example.trymatch.config;
 
+import com.example.trymatch.security.entity.ClubMemberRole;
 import com.example.trymatch.security.filter.ApiCheckFilter;
 import com.example.trymatch.security.filter.ApiLoginFilter;
 import com.example.trymatch.security.handler.ApiLoginFailHandler;
 import com.example.trymatch.security.handler.ClubLoginSuccessHandler;
+import com.example.trymatch.security.handler.WebAuthenticationEntryPoint;
 import com.example.trymatch.security.service.ClubUserDetailsService;
 
 import jakarta.servlet.ServletException;
@@ -46,6 +48,10 @@ public class SecurityConfig {
     @Autowired
     private ClubUserDetailsService userDetailsService;
 
+    // 인증되지 않은 사용자 접근에 대한 handler
+    @Autowired
+    private WebAuthenticationEntryPoint webAuthenticationEntryPoint;
+
 
     // BCryptPasswrodEncoder()는 bcrypt 해시 함수를 이용해 패스워드를 암호화 하는 목적으로 설계된 클래스
     // 암호화된 패스워드는 원래되로 복호화가 불가능하며 (매번 암호화된 값도 다르게 나온다)
@@ -86,10 +92,9 @@ public class SecurityConfig {
 
         /** 만약 /sample/admin 페이지에 ROLE_ADMIN 권한을 가진 사용자들만 접근이 가능하게 설정하고 싶다면
          SampleController의 exAdmin() 메서드에 @PreAuthorize("haseRole('ADMIN')) 해주면 됨  **/
-        // 접근 제한 설정 @EnableGlobalMethodSecurity 안썼을 때
+//        // 접근 제한 설정 @EnableGlobalMethodSecurity 안썼을 때
 //        http.authorizeHttpRequests((auth) -> {
-//            auth.requestMatchers("/sample/all").permitAll();
-//            auth.requestMatchers("/sample/member").hasRole("USER");
+//            auth.requestMatchers("index").hasRole("USER");
 //        });
 
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
@@ -98,7 +103,12 @@ public class SecurityConfig {
         AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
         http.authenticationManager(authenticationManager);
 
-        http.formLogin().
+        http.authorizeHttpRequests((auth) ->{
+                    auth.requestMatchers("/login").permitAll();
+                    auth.requestMatchers("/sample/SignUp").permitAll();
+                    auth.anyRequest().hasRole("USER");
+                }).
+                formLogin().
                 loginPage("/sample/login.html").
                 usernameParameter("id").
                 passwordParameter("pw").
@@ -107,6 +117,7 @@ public class SecurityConfig {
                     @Override
                     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
                         System.out.println("authentication : " + authentication.getName());
+                        System.out.println("로그인 성공!!!");
                         response.sendRedirect("/");
                     }
                 })
@@ -120,7 +131,10 @@ public class SecurityConfig {
 
         http.csrf().disable();  // CSRF 토큰 발행하지 않음 설정
         //  http.logout();  // 인가 인증에 문제시 로그아웃 화면 띄우기, CSRF 토큰을 사용할 때는 반드시 POST 방식으로만 로그아웃 처리해야함
-        http.logout().logoutSuccessUrl("/"); // csrf 토큰 비활성화시 GET 방식으로 로그아웃
+        http.logout().logoutSuccessUrl("/login"); // csrf 토큰 비활성화시 GET 방식으로 로그아웃
+
+        // 권한이 없는 사용자일시
+        http.exceptionHandling().authenticationEntryPoint(webAuthenticationEntryPoint);
 
 //        http.httpBasic();
 
@@ -139,16 +153,6 @@ public class SecurityConfig {
 
         http.addFilterBefore(apiLoginFilter(authenticationManager), UsernamePasswordAuthenticationFilter.class);
 
-        // *** h2 관련 보안 처리 추후 삭제 예정 ***
-//        http.authorizeHttpRequests().requestMatchers(
-//                        new AntPathRequestMatcher("/**")).permitAll()
-//                .and()
-//                .csrf().ignoringRequestMatchers(
-//                        new AntPathRequestMatcher("/h2-console/**"))
-//                .and()
-//                .headers()
-//                .addHeaderWriter(new XFrameOptionsHeaderWriter(
-//                        XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN));
         // *** h2 관련 보안 처리 추후 삭제 예정 ***
         return http.build();
     }
