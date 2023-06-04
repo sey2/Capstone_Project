@@ -382,68 +382,46 @@
         </div>
         <!-- ------------------------------------------------- -->
         <button type="submit" value="login">회원가입</button>
-        <a href="login.html" class="discrete" target="_blank">로그인</a>
+        <a href="login" class="discrete" target="_blank">로그인</a>
     </form>
 </div>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
-    document.querySelector('form').addEventListener('submit', function(event) {
-        event.preventDefault();
+    $(document).ready(function() {
+        $('form.log-in').submit(function(event) {
+            event.preventDefault();
 
-        var username = document.querySelector('#email').value.trim();
-        var userpw = document.querySelector('#password').value.trim();
-        // var userlen = document.querySelector('#email #password').value;
+            // 입력값 가져오기
+            var email = $('#email').val();
+            var name = $('#name').val();
+            var password = $('#password').val();
+            var mbti = $('#mbti').val();
 
-        if (username === '') {
-            alert('아이디를 입력해주세요.');
-            return;
-        }
+            // JSON 데이터 생성
+            var data = {
+                email: email,
+                name: name,
+                password: password,
+                mbti: mbti
+            };
 
-        if (userpw === '') {
-            alert('비밀번호를 입력해주세요.');
-            return;
-        }
-
-        // if (userlen.length < 6) {
-        //     alert("6자 이상으로 입력하세요.");
-        // }
-
-        this.action = 'your-submit-url';
-        this.submit();
-    });
-</script>
-
-<script>
-    function submitForm(event) {
-        event.preventDefault();
-        var email = document.querySelector('input[name="email"]').value;
-        var name = document.querySelector('input[name="name"]').value;
-        var password = document.querySelector('input[name="password"]').value;
-        var mbti = document.querySelector('input[name="mbti"]').value;
-
-        var data = {
-            "email": email,
-            "name": name,
-            "password": password,
-            "mbti": mbti
-        };
-
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://localhost:8081/sample/SignUp", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    console.log(xhr.responseText);
-                    window.location.href = "SignUp.html"; // register.html로 이동
-                } else {
-                    console.log("Error: " + xhr.status);
+            // POST 요청 보내기
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:8081/sample/register',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                success: function(response) {
+                    // 요청 성공 시 처리
+                    console.log('요청 성공:', response);
+                },
+                error: function(error) {
+                    // 요청 실패 시 처리
+                    console.log('요청 실패:', error);
                 }
-            }
-        };
-
-        xhr.send(JSON.stringify(data));
-    }
+            });
+        });
+    });
 </script>
 
 

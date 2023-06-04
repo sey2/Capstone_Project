@@ -58,8 +58,12 @@ function NavDrop() {
                                 <NavDropdown.Item onClick={() => navigate("/more")}>
                                     여행지 보기
                                 </NavDropdown.Item>
-                                <NavDropdown.Item>여행 후기</NavDropdown.Item>
-                                <NavDropdown.Item>챗봇 여행지 추천</NavDropdown.Item>
+                                <NavDropdown.Item onClick={() => navigate("/Board")}>
+                                    여행 후기
+                                </NavDropdown.Item>
+                                <NavDropdown.Item onClick={()=> navigate("/Chatgpt")}>
+                                    챗봇 여행지 추천
+                                </NavDropdown.Item>
                                 <NavDropdown.Item onClick={() => navigate("/MapTest")}>
                                     주변 여행지 추천
                                 </NavDropdown.Item>
