@@ -30,6 +30,11 @@ public class PostController {
         return postService.getAllPosts();
     }
 
+    @GetMapping("/count")
+    public Integer getCount(){
+        return postService.getCount();
+    }
+
     // READ
     // ID를 통해서 게시글을 하나만 반환한다.
     @GetMapping("/{postId}")
