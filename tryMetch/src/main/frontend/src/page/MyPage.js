@@ -7,11 +7,13 @@ import MyReviews from './MyReviews';
 // import "firebase/storage";
 // import "firebase/firestore";
 import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 const defaultProfileImage = 'https://blog.kakaocdn.net/dn/c3vWTf/btqUuNfnDsf/VQMbJlQW4ywjeI8cUE91OK/img.jpg';
 
 function MyPage() {
-    const [select, setSelect] = useState('btn1');
+    const navigate = useNavigate();
+    const [select, setSelect] = useState('');
     const [intro, setIntro] = useState('');
     const [editing, setEditing] = useState(true);
     const [profileImage, setProfileImage] = useState(defaultProfileImage);
@@ -151,41 +153,31 @@ function MyPage() {
                     <button
                         value="btn1"
                         className={`new-btn ${select === 'btn1' ? 'active' : ''}` }
-                        onClick={() => handleButtonClick('btn1')}
+                        onClick={() => navigate("/board-list")}
                     >
-                        내가 좋아요한 <br/>여행 후기
+                        여행 후기
                     </button>
                 </div>
                 <div className='menu-bar-btn'>
                     <button
                         value="btn2"
                         className={`new-btn ${select === 'btn2' ? 'active' : ''}`}
-                        onClick={() => handleButtonClick('btn2')}
+                        onClick={() => navigate("/chatgpt")}
                     >
-                        내가 댓글 단 <br/>여행 후기
+                        챗봇 여행지 추천
                     </button>
                 </div>
                 <div className='menu-bar-btn'>
                     <button
                         value="btn3"
                         className={`new-btn ${select === 'btn3' ? 'active' : ''}`}
-                        onClick={() => handleButtonClick('btn3')}
+                        onClick={() => navigate('/more')}
                     >
-                        내가 작성한 <br/>여행 후기
+                        주변 여행지 추천
                     </button>
                 </div>
             </div>
         </div>
-            <div>
-            {/* 메뉴 끝 */}
-            {/* 선택한 버튼에 따른 컴포넌트 렌더링 */}
-            {select === 'btn1' && <LikeInfo />}
-            {/* btn1을 눌렀을 때 보여줄 컴포넌트 */}
-            {select === 'btn2' && <CommentedInfo />}
-            {/* btn2를 눌렀을 때 보여줄 컴포넌트 */}
-            {select === 'btn3' && <MyReviews />}
-            {/* btn3을 눌렀을 때 보여줄 컴포넌트 */}
-            </div>
         </div>
         </>
     );

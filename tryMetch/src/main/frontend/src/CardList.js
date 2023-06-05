@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
+// import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -56,8 +57,8 @@ function CardList() {
             <div className="col-md-3 col-sm-12">
                 <div className="moreBtn">
                 <Button className="moreBtn" onClick={() => navigate("/more")}>
-                    <FontAwesomeIcon icon={faCaretRight} beat size="2xl" style={{ color: "ffffff" }} />
-                </Button>
+                    {/* <FontAwesomeIcon icon={faCaretRight} beat size="2xl" style={{ color: "ffffff" }} /> */}
+                    <FontAwesomeIcon icon={faPlus} beat size="2xl" style={{color: "#ffffff",}} />                </Button>
                 </div>
             </div>
             </div>
