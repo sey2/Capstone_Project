@@ -10,7 +10,7 @@ import axios from "axios";
 
 
 const options1 = [
-    { value: '1', label: '전라도' },
+    { value: '1', label: '광주광역시' },
     { value: '2', label: '경기도' },
     { value: '3', label: '서울특별시' }
 ]
@@ -23,18 +23,7 @@ const options2 = [
 
 
 function More() {
-
-    // useEffect(() =>{
-
-    //     axios.get('/api/map')
-    //         .then(response => {
-
-    //             const arr = response.data
-    //             console.log(mapData.length)
-    //         })
-    //         .catch(error => console.log(error))
-
-    // },[]);
+    
     const handleImageClick = (searchQuery) => {
         const searchUrl = `https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=${encodeURIComponent(searchQuery)}`;
         window.open(searchUrl, '_blank');

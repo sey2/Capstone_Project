@@ -2,7 +2,7 @@ import Carousel from 'react-bootstrap/Carousel';
 
 function MainCarousel() {
     return (
-        <Carousel variant="dark">
+        <Carousel variant="white">
         <Carousel.Item>
             <img
             fluid

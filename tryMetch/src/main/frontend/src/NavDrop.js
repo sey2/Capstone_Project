@@ -69,12 +69,12 @@ function NavDrop() {
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown onClick={goToMyPage}
-                                             id="nav-dropdown-white-example"
-                                             title={<span className="dropdown-text">마이페이지</span>}
-                                             menuVariant="dark"
-                                             show={dropdownVisible}
-                                             onMouseEnter={showDropdown}
-                                             onMouseLeave={hideDropdown}
+                                    id="nav-dropdown-white-example"
+                                    title={<span className="dropdown-text">마이페이지</span>}
+                                    menuVariant="dark"
+                                    show={dropdownVisible}
+                                    onMouseEnter={showDropdown}
+                                    onMouseLeave={hideDropdown}
                                 >
                                     <NavDropdown.Item onClick={() => navigate('/Login')}>
                                         로그인
