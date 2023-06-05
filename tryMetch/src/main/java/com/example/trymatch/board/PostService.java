@@ -29,6 +29,14 @@ public class PostService {
     }
 
     /*
+        게시물 갯수
+        return
+     */
+    public Integer getCount(){
+        return (int) postRepository.count();
+    }
+
+    /*
     * 게시글 ID로 조회
     * @param id
     * return
