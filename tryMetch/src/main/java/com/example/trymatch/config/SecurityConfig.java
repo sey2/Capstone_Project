@@ -106,6 +106,8 @@ public class SecurityConfig {
         http.authorizeHttpRequests((auth) ->{
                     auth.requestMatchers("/login").permitAll();
                     auth.requestMatchers("/SignUp").permitAll();
+                    auth.requestMatchers("/sample/login").permitAll();
+                    auth.requestMatchers("/sample/register").permitAll();
                     auth.anyRequest().hasRole("USER");
                 }).
                 formLogin().
