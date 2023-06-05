@@ -1,6 +1,7 @@
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {useCallback, useState} from "react";
+import React, { useEffect } from 'react';
 import ImageUploader from "../../components/ImageUploader";
 import api from "../../utils/api";
 //import posts from "../../utils/posts";
@@ -10,7 +11,7 @@ import {Button} from "@mui/material";
 import "./addBoard.scss";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import axios from 'axios';
 
 const AddBoard= () => {
     // 먼저 사용자 로그인 토큰을 확인 state.Auth.token
@@ -21,6 +22,21 @@ const AddBoard= () => {
 
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const [userid, setUserid] = useState("");
+
+    useEffect(() => {
+        axios.get('http://localhost:8081/sample/member')
+            .then(response => {
+                console.log(response.data);
+                setUserid(response.data.email)
+            })
+            .catch(error => {
+                // 에러 처리
+                console.error(error);
+            });
+
+    }, []);
+
 
     // const [image, setImage] = useState({
     //     image_file: "",
@@ -38,25 +54,29 @@ const AddBoard= () => {
 
 
     const handleSubmit = useCallback(async () => {
-
         try {
+            console.log(title)
+            console.log(content)
+            console.log(userid)
+            const url = 'http://localhost:8081/posts';
+            const email = userid
+            const data = {
+                title: title,
+                content: content
+            };
 
-            const formData = new FormData();
-            formData.append("title", title);
-            formData.append("content", content);
-            // formData.append("file", image.image_file);
-            formData.append("member_id", jwtUtils.getId(token));
-
-            // await api.post("/api/board", formData);
-
-            await api.post("/posts", formData);
-            window.alert("등록이 완료되었습니다!");
-            navigate("/board-list");
-        }catch (e) {
-            toast.error("이모지 사용시 오류가 발생합니다!", {
-                position: "top-center",
+            const response = await axios.post(url, data, {
+                params: {
+                    email: email
+                }
             });
+
+            console.log(response.data); // 서버로부터의 응답 데이터
+
+        } catch (error) {
+            console.error(error);
         }
+
     }, [canSubmit]);
 
     return (

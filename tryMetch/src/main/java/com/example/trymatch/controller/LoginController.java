@@ -44,11 +44,13 @@ public class LoginController {
      * @AuthenticationPrincipal은 별도의 캐스팅 작업 없이 실제 ClubAuthMemberDTO 타입을 사용할 수 있어서 좀더 판하게 사용 가능
      */
     @GetMapping("/member")
-    public void exMember(@AuthenticationPrincipal ClubAuthMemberDTO clubAuthMember){
+    public ClubAuthMemberDTO exMember(@AuthenticationPrincipal ClubAuthMemberDTO clubAuthMember){
         log.info("exMember............");
 
         log.info("-------------------");
         log.info(clubAuthMember);
+
+        return clubAuthMember;
     }
 
     // 관리자만 접근할 수 있는 경로

@@ -53,7 +53,7 @@ public class PostService {
      */
     public Post createPost(Post post, String Email) {
         // User 정보 가져오기
-        Optional<ClubMember> member = clubMemberRepository.findByName(Email);
+        Optional<ClubMember> member = clubMemberRepository.findByEmail(Email, false);
 
         // User 정보가 존재하는 경우에만 게시물 작성자로 설정
         if (member.isPresent()) {
