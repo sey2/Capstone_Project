@@ -264,7 +264,10 @@ bg-primary {
   margin-top: 10px;
   position:fixed;
   font-size: xx-small;
-  margin-top: 80px;
+  margin-top: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .login-form {
@@ -322,9 +325,9 @@ bg-primary {
 }
 /* 3961a5 */
 .real-profile {
-  border: solid #6aafe6;
+  border: solid #8abde7;
   padding: 15px;
-  background-color: #6aafe6;
+  background-color: #8abde7;
   color: black;
   border-width: 45px;
   border-radius: 1%;
@@ -335,7 +338,7 @@ bg-primary {
 }
 
 .new-btn {
-  background-color: #6aafe6;
+  background-color: #8abde7;
   box-sizing: border-box;
   color: #ffffff;
   position: relative;
@@ -359,10 +362,15 @@ bg-primary {
 .mypage-btn, .mypage-btn-img {
   position: sticky;
   top: 0;
+  display: flex;
+  align-items: center;
 }
 
 .rounded-circle{
-  margin-left: 20%;
+  /* margin-left: 5%; */
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
 }
 
 .text-area {

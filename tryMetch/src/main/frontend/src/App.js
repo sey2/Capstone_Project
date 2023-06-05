@@ -52,6 +52,7 @@ function App() {
                 <Route path="/MapTest" element={<MapTest />} />
                 <Route path="/Login" element={<Login />} />
                 <Route path="/board-list" element={<BoardList/>}/>
+                {/* <Route path="/MyPage/:id" element={<MyPage />} /> */}
                 <Route
                     path="/add-board"
                     element={

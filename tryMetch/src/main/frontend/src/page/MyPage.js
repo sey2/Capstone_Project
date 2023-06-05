@@ -3,6 +3,10 @@ import { Figure, ProgressBar } from 'react-bootstrap';
 import LikeInfo from './LikeInfo';
 import CommentedInfo from './CommentedInfo';
 import MyReviews from './MyReviews';
+// import firebase from "firebase/app";
+// import "firebase/storage";
+// import "firebase/firestore";
+import { useParams } from 'react-router-dom'
 
 const defaultProfileImage = 'https://blog.kakaocdn.net/dn/c3vWTf/btqUuNfnDsf/VQMbJlQW4ywjeI8cUE91OK/img.jpg';
 
@@ -12,6 +16,14 @@ function MyPage() {
     const [editing, setEditing] = useState(true);
     const [profileImage, setProfileImage] = useState(defaultProfileImage);
     const [originalIntro, setOriginalIntro] = useState('');
+
+    // let {id} = useParams()
+
+    // const getUserID = async() => {
+    //     let url = `http://localhost:8081/MyPage/${id}`
+    //     let response = await fetch(url)
+    //     let data = await response.json()
+    // }
 
     const handleButtonClick = (value) => {
         setSelect(value);
@@ -39,6 +51,24 @@ function MyPage() {
         };
         reader.readAsDataURL(file);
     };
+
+//     const storage = firebase.storage();
+    
+//     const handleCheckProfile = (file) => {
+//     // 클라우드에서 프로필 사진을 불러오는 로직
+//     const storageRef = storage.ref();
+//     const imageRef = storageRef.child(`profile_images/${file.name}.jpg`); // 프로필 이미지 경로
+
+//     imageRef
+//     .getDownloadURL()
+//     .then((url) => {
+//     setProfileImage(url);
+//     })
+//     .catch((error) => {
+//     console.error('프로필 이미지 다운로드 실패:', error);
+//     });
+// };
+
 
     const handleResetProfile = () => {
         setProfileImage(defaultProfileImage);
@@ -80,20 +110,24 @@ function MyPage() {
             <button className="mypage-btn-img" onClick={handleResetProfile}>
                 reset
             </button>
+            {/* <button className="mypage-btn-img" onClick={handleCheckProfile}>
+                체크
+            </button> */}
             <Figure.Caption >
                 <div className="black-text">홍길동</div>
                 <br />
                 {editing ? (
                 <>
-                    <textarea 
+                    {/* <textarea 
                     className='text-area'
                     value={intro}
                     onChange={handleIntroChange}
                     placeholder="인삿말을 등록하세요."
-                    />
-                    <button className="mypage-btn" onClick={handleIntroSubmit}>
+                    /> */}
+                    <div className="black-text">mbti</div>
+                    {/* <button className="mypage-btn" onClick={handleIntroSubmit}>
                     upload
-                    </button>
+                    </button> */}
                 </>
                 ) : (
                 <>
