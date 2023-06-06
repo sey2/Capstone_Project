@@ -4,6 +4,8 @@ import com.example.trymatch.comment.Comment;
 import com.example.trymatch.comment.CommentService;
 import com.example.trymatch.repository.ClubMemberRepository;
 import com.example.trymatch.security.entity.ClubMember;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Log4j2
 @RequestMapping("/posts")
 public class PostController {
     private final PostService postService;
@@ -27,6 +30,7 @@ public class PostController {
     // 모든 게시물을 반환함
     @GetMapping
     public List<Post> getAllPosts() {
+        System.out.println("Get All Post Mapping");
         return postService.getAllPosts();
     }
 
@@ -39,10 +43,12 @@ public class PostController {
     // ID를 통해서 게시글을 하나만 반환한다.
     @GetMapping("/{postId}")
     public ResponseEntity<Post> getPostById(@PathVariable Long postId) {
+        System.out.println("GetMapping Post");
         Post post = postService.getPostById(postId);
         if (post != null) {
             return ResponseEntity.ok(post);
         } else {
+            System.out.println("post Id: " + post.getId());
             return ResponseEntity.notFound().build();
         }
     }

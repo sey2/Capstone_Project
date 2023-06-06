@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
+import axios from 'axios';
 import "./board.scss";
 import {Button, Dialog, DialogContent, IconButton} from "@mui/material";
 import {useSelector} from "react-redux";
@@ -7,7 +8,6 @@ import api from "../../utils/api";
 //import posts from "../../utils/posts";
 import moment from "moment";
 import Comments from "../../components/Comments";
-import axios from "axios";
 import DisabledByDefaultOutlinedIcon from "@mui/icons-material/DisabledByDefaultOutlined";
 
 const Board =()=> {
@@ -16,7 +16,13 @@ const Board =()=> {
     // const [board, setBoard] = useState({});
 
     const {post_id} = useParams();
-    const {posts, setBoard} = useParams({});
+
+    const {title} = useParams();
+    const {content} = useParams();
+    const {username} = useParams();
+    const {date} = useParams();
+
+    const {posts, setPosts} = useState();
     const [isLoaded, setIsLoaded] = useState(false);
 
     // token
@@ -27,14 +33,30 @@ const Board =()=> {
     const [show, setShow] = useState(false);
 
     // board 가져오기
-    useEffect(()=> {
-        const getBoard = async ()=> {
-            const {data} = await axios.post(`/posts/${post_id}`);
-            return data;
-        }
-        getBoard().then(result => setBoard(result)).then(() => setIsLoaded(true));
-    },[])
+    useEffect(() => {
+        console.log("게시글 번호: " + post_id)
+        const getBoard = async () => {
+            try {
+                const response = await axios.get("http://localhost:8081/posts/1")
+                console.log(response.data)
 
+                const data = {
+                    img_url:"https://github.com/sey2/Hango-java/issues/1#issue-1370906209",
+                    title: response.data.title,
+                    content: response.data.content,
+                    username: 1,
+                    date: '2023-06-06',
+                }
+
+                setPosts(post)
+                setIsLoaded(true);
+            } catch (error) {
+                console.error('게시글 정보를 가져오는데 실패했습니다:', error);
+            }
+        };
+
+        getBoard();
+    }, [post_id]);
 
     return(
         <React.Fragment>
@@ -56,9 +78,9 @@ const Board =()=> {
 
                     {/* board-header,username,data, */}
                     <div className="board-header">
-                        {/* <div className="board-header-username">{posts.user.username}</div> */}
-                        <div className="board-header-membername">{posts.member.membername}</div>
-                        <div className="board-header-date">{moment(posts.created).add(9, "hour").format('YYYY-MM-DD')}</div>
+                         {/*<div className="board-header-username">{posts.user.username}</div>*/}
+                        {/*<div className="board-header-membername">{posts.username}</div>*/}
+                        <div className="board-header-date">{moment(posts.date).add(9, "hour").format('YYYY-MM-DD')}</div>
                     </div>
                     <hr/>
                     <div className="board-body">

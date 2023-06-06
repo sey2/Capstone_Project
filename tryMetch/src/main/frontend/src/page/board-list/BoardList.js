@@ -39,6 +39,7 @@ const BoardList=()=> {
             // const {data} = await axios.post("/posts/getAllPosts");
             const url = "http://localhost:8081/posts/count"
             const {data} = await axios.get(url)
+            console.log(data.total)
             return data.total;
         }
         // 페이지 카운트 구하기: (전체 board 갯수) / (한 페이지 갯수) 결과 올림 , 한 페이지에 게시물 4개씩
@@ -81,8 +82,7 @@ const BoardList=()=> {
             {/* 수정 필요  */}
             <div className="boardList-body">
                 {boardList.map((item, index) => (
-                    // <Card key={item.id} membername={item.user.name}
-                    <Card key={item.id} username={item.id}
+                    <Card key={item.id} username='1'
                           date={moment(item.created).add(9, "hour").format('YYYY-MM-DD')}
                           title={item.title} content={item.content}
                         // postId={item.id} img_url={`/api/image/view/${item.id}`}
@@ -107,47 +107,3 @@ const BoardList=()=> {
 }
 
 export default BoardList;
-
-{/* <div className="sm:flex  justify-between mb-[1%] hidden ">
-              <button
-                className="font-3xl"
-                onClick={() => {
-                  scroll(-window.innerWidth * 0.5);
-                }}
-              >
-                <CgChevronLeft className="text-6xl  " />
-               </button>
-            </div>
-
-
-            <ul
-        className="overflow-x-auto whitespace-nowrap no-scrollbar"
-        // @ts-ignore
-        ref={scrollRef}
-      >
-        {isLoading ? (
-          <div className="flex ">
-            {new Array(window.innerWidth < 1024 ? 3 : 4)
-              .fill(null)
-              .map((_, idx) => (
-
-            <SkeletonTheme
-                  baseColor="#202020"
-                  highlightColor="#444"
-                  key={idx}
-                >
-                  <div className=" mb-3 2xl:w-[23%] xl:w-[28%] lg:w-[34%] w-[45%] mr-[2%] ">
-                    <Skeleton className="sm:h-[230px] h-[140px]" />
-                    <div className="mt-3">
-                      <Skeleton className="w-[80%] h-[30px]" />
-                      <Skeleton className="w-[30%]  h-[25px]" />
-                      <Skeleton className="w-[60%] h-[20px]" />
-                    </div>
-                  </div>
-                </SkeletonTheme>
-              ))}
-        </div>
-        ): null}
-            </ul> */}
-
-          
