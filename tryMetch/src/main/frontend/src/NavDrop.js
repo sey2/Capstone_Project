@@ -95,6 +95,7 @@ function NavDrop() {
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
+                <Navbar.Brand className='navbar-color-log'>로그아웃</Navbar.Brand>
             </Navbar>
         </>
     )
