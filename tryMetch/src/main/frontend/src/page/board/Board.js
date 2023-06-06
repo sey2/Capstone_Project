@@ -47,9 +47,9 @@ const Board =()=> {
                     username: 1,
                     date: '2023-06-06',
                 }
-
-                setPosts(post)
-                setIsLoaded(true);
+                //
+                // setPosts(post)
+                // setIsLoaded(true);
             } catch (error) {
                 console.error('게시글 정보를 가져오는데 실패했습니다:', error);
             }
